@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 class LeaveApplicationActivity : AppCompatActivity() {
    override fun onCreate(savedInstanceState: Bundle?) {
-      super.onCreate(savedInstanceState)nknjk
-      setContentView(R.layout.activity_leave_application01)nknkh
+      super.onCreate(savedInstanceState)
+      setContentView(R.layout.activity_leave_application01)
+      val nigga = "sheeesh"
    }
 }
