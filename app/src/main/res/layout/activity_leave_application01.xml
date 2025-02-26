@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LeaveApplicationActivity">
+
+        <TextView
+            android:id="@+id/topContainerApp"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:background="@color/green"
+            android:fontFamily=""
+            android:gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:paddingStart="90dp"
+            android:text="Application of\nLeave"
+            android:textColor="@color/white"
+            android:textSize="37sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.043"/>
+
+        <ImageView
+            android:id="@+id/imgVlogosummary"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/imgviewlogo_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.055"
+            app:srcCompat="@drawable/ucwdlogo" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView1"
+            app:cardCornerRadius="20dp"
+            android:backgroundTint="@color/white"
+            android:layout_width="395dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.206">
+            <LinearLayout
+                android:id="@id/topContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/innerContainer"
+                    android:layout_width="190dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/image"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/baseline_person_24"/>
+
+                    <TextView
+                        android:id="@+id/employeeName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:text="Employee\nName"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <SearchView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/bg_border"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/secondInnerContainer"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/leaveAvailableContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/leaveAvailable"
+                            android:textStyle="bold"
+                            android:layout_marginTop="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Available Leave: "/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/availableLeaveBoard"
+                        android:layout_width="200dp"
+                        android:layout_height="69dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:id="@+id/availableLeaveBoardVLSL"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:id="@+id/vlslContainer"
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="VL  : "
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginVertical="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="SL  : "
+                                    android:layout_marginStart="20dp"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/vlslContainerBoard"
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="XX "
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginVertical="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="XX "
+                                    android:layout_marginStart="5dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/availableLeaveBoardFLSPL"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:id="@+id/flsplContainer"
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="FL   : "
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginVertical="10dp"
+                                    tools:ignore="RtlHardcoded" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="SPL: "
+                                    android:layout_marginStart="20dp"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/flsplContainerBoard"
+                                android:layout_width="50dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="XX "
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginVertical="10dp"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold"
+                                    android:text="XX "
+                                    android:layout_marginStart="5dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:background="@drawable/bg_border"
+            app:cardElevation="4dp"
+            android:layout_width="395dp"
+            android:layout_height="400dp"
+            app:cardBackgroundColor="@drawable/bg_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.589"
+            app:cardCornerRadius="20dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="#9E9797">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_border"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:text="Details"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.033" />
+
+                <LinearLayout
+                    android:id="@+id/employeenamecontainer"
+                    android:layout_width="345dp"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_border"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.170">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="AFL No:"
+                        android:layout_marginEnd="55dp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/verdana"
+                        android:layout_gravity="center_vertical"/>
+
+                    <TextView
+                        android:layout_marginStart="17dp"
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:text="001"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:background="@drawable/calendar_bgcol"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/typesOfLeaves"
+                    android:layout_width="345dp"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_border"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.36">
+                    <TextView
+                        android:id="@+id/TVemployeename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="20dp"
+                        android:text="Types of Leaves:"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/verdana"
+                        android:layout_gravity="center_vertical"/>
+
+                    <TextView
+                        android:layout_marginStart="7dp"
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:text="Sick leave"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:background="@drawable/calendar_bgcol"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/dateOfApplication"
+                    android:layout_width="345dp"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_border"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.55">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:paddingStart="20dp"
+                        android:text="Date of Application:"
+                        android:layout_marginStart="2dp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/verdana"
+                        android:layout_gravity="center_vertical"/>
+
+                    <TextView
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:text="1/12/2024"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:background="@drawable/calendar_bgcol"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/numberOfDays"
+                    android:layout_width="345dp"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_border"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.74">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:paddingStart="20dp"
+                        android:text="Number of days:"
+                        android:layout_marginStart="2dp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/verdana"
+                        android:layout_gravity="center_vertical"/>
+
+                    <TextView
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:text="3"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_marginStart="22dp"
+                        android:background="@drawable/calendar_bgcol"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/dateOfLeave"
+                    android:layout_width="345dp"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_border"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.93">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:paddingStart="20dp"
+                        android:text="Date of Leave:"
+                        android:layout_marginStart="2dp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/verdana"
+                        android:layout_gravity="center_vertical"/>
+
+                    <TextView
+                        android:layout_width="170dp"
+                        android:layout_height="50dp"
+                        android:text="1/12/2024"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:layout_marginStart="35dp"
+                        android:background="@drawable/calendar_bgcol"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    <ImageButton
+        android:id="@+id/recbtn4"
+        android:layout_width="95dp"
+        android:layout_height="85dp"
+        android:background="@drawable/title_bgcol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94"
+        app:srcCompat="@drawable/record_btn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/summary_bt4"
+        android:layout_width="95dp"
+        android:layout_height="85dp"
+        android:background="@drawable/title_bgcol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94"
+        app:srcCompat="@drawable/summary_btn1"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/exit_bt4"
+        android:layout_width="95dp"
+        android:layout_height="85dp"
+        android:background="@drawable/title_bgcol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.917"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.94"
+        app:srcCompat="@drawable/exit_btn"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/TVrec_bt4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/verdana"
+            android:gravity="center"
+            android:text="Record"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.127"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.970" />
+
+        <TextView
+            android:id="@+id/TVsumm_bt4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/verdana"
+            android:gravity="center"
+            android:text="Summary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.970" />
+
+        <TextView
+            android:id="@+id/TVexit_btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/verdana"
+            android:gravity="center"
+            android:text="Exit"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.842"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.970" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

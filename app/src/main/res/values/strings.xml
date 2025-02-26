@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SoftEngDevTest</string>
+    <string name="summary_aflno"><u>AFL No.</u></string>
+    <string name="summary_TofLeave"><u>Type of \nLeave</u></string>
+    <string name="summary_DofLeave"><u>Date of \nLeave</u></string>
+    <string name="sign_up">Don\'t have an account <u>Sign up</u></string>
+</resources>
