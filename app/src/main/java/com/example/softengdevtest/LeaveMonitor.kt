@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.softengdevtest.databinding.ActivityLeaveMonitorBinding
-import com.example.softengdevtest.databinding.ActivityLoginBinding
 
 class LeaveMonitor : AppCompatActivity() {
     private lateinit var binding : ActivityLeaveMonitorBinding

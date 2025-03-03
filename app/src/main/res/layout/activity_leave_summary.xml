@@ -11,7 +11,8 @@
     <TextView
         android:id="@+id/topContainer"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="750dp"
         android:background="@color/green"
         android:gravity="center"
         android:paddingStart="50dp"
@@ -19,12 +20,12 @@
         android:textColor="@color/white"
         android:textSize="37sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/inner_widget_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043"
+        app:layout_constraintVertical_bias="0.446"
         tools:ignore="RtlSymmetry,TextSizeCheck" />
 
     <ImageButton
@@ -133,12 +134,12 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/imgviewlogo_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/inner_widget_container"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055"
+        app:layout_constraintVertical_bias="0.368"
         app:srcCompat="@drawable/ucwdlogo"
         tools:ignore="ContentDescription" />
 
@@ -146,62 +147,62 @@
         android:id="@+id/employeenamecontainer"
         android:layout_width="345dp"
         android:layout_height="118dp"
-        android:orientation="horizontal"
         android:background="@drawable/title_bgcol"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.300">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/monthcontainer"
+        app:layout_constraintEnd_toEndOf="@+id/inner_widget_container"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="@+id/inner_widget_container"
+        app:layout_constraintTop_toBottomOf="@+id/yearcontainer"
+        app:layout_constraintVertical_bias="0.526">
+
         <TextView
             android:id="@+id/TVemployeename"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/verdana"
             android:padding="20dp"
             android:text="@string/empName"
             android:textSize="21sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/verdana"
-            android:layout_gravity="center_vertical"/>
+            android:textStyle="bold" />
 
         <SearchView
             android:layout_width="180dp"
             android:layout_height="80dp"
-            android:background="@drawable/calendar_bgcol"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/calendar_bgcol" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/yearcontainer"
         android:layout_width="345dp"
         android:layout_height="118dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="72dp"
         android:background="@drawable/title_bgcol"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.500">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/inner_widget_container"
+        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintStart_toStartOf="@+id/inner_widget_container"
+        app:layout_constraintTop_toTopOf="@+id/inner_widget_container">
 
         <TextView
             android:id="@+id/TVyear"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/verdana"
             android:padding="20dp"
             android:text="@string/yr"
-            android:layout_marginEnd="47dp"
             android:textSize="21sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/verdana"
-            android:layout_gravity="center_vertical"/>
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/yearSpinner"
             android:layout_width="180dp"
             android:layout_height="80dp"
-            android:background="@drawable/calendar_bgcol"
             android:layout_gravity="center_vertical"
-            />
+            android:background="@drawable/calendar_bgcol" />
 
 
     </LinearLayout>
@@ -210,32 +211,32 @@
         android:id="@+id/monthcontainer"
         android:layout_width="345dp"
         android:layout_height="118dp"
-        android:orientation="horizontal"
+        android:layout_marginBottom="76dp"
         android:background="@drawable/title_bgcol"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.700">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/inner_widget_container"
+        app:layout_constraintEnd_toEndOf="@+id/inner_widget_container"
+        app:layout_constraintHorizontal_bias="0.485"
+
+        app:layout_constraintStart_toStartOf="@+id/inner_widget_container">
 
         <TextView
             android:id="@+id/TVmonth"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/verdana"
             android:padding="20dp"
             android:text="@string/mnt"
-            android:layout_marginEnd="27dp"
             android:textSize="21sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/verdana"
-            android:layout_gravity="center_vertical"/>
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/monthSpinner"
             android:layout_width="180dp"
             android:layout_height="80dp"
-            android:background="@drawable/calendar_bgcol"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/calendar_bgcol" />
     </LinearLayout>
 
     <android.widget.Button
@@ -250,12 +251,12 @@
         android:textAllCaps="false"
         android:textSize="19sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783"
+        app:layout_constraintBottom_toBottomOf="@+id/inner_widget_container"
+        app:layout_constraintEnd_toEndOf="@+id/inner_widget_container"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="@+id/inner_widget_container"
+        app:layout_constraintTop_toBottomOf="@+id/monthcontainer"
+        app:layout_constraintVertical_bias="0.411"
         tools:ignore="TouchTargetSizeCheck" />
 
 
