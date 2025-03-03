@@ -19,14 +19,13 @@ class LeaveMonitor : AppCompatActivity() {
             finishAffinity()
         }
         binding.recbtn.setOnClickListener {
-            var intent = Intent(this, LeaveApplicationActivity::class.java)
+            val intent = Intent(this, LeaveApplicationActivity::class.java)
             startActivity(intent)
 
         }
         binding.summaryBtn.setOnClickListener {
-            var intent = Intent(this, Summary::class.java)
+            val intent = Intent(this, LeaveSummary::class.java)
             startActivity(intent)
-
         }
 
     }

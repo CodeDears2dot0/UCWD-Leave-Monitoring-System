@@ -13,19 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@color/green"
-        android:text="Leave\nSummary"
-        android:textColor="@color/white"
-        android:textSize="37dp"
         android:gravity="center"
+        android:paddingStart="50dp"
+        android:text="@string/lvSum"
+        android:textColor="@color/white"
+        android:textSize="37sp"
         android:textStyle="bold"
-        android:fontFamily=""
-        android:paddingLeft="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintVertical_bias="0.043"
+        tools:ignore="RtlSymmetry,TextSizeCheck" />
 
     <ImageButton
         android:id="@+id/recbtn4"
@@ -38,7 +38,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.94"
-        app:srcCompat="@drawable/record_btn" />
+        app:srcCompat="@drawable/record_btn"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/summary_bt4"
@@ -50,7 +51,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.94"
-        app:srcCompat="@drawable/summary_btn1" />
+        app:srcCompat="@drawable/summary_btn1"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/exit_bt4"
@@ -63,7 +65,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.94"
-        app:srcCompat="@drawable/exit_btn" />
+        app:srcCompat="@drawable/exit_btn"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/TVrec_bt4"
@@ -71,8 +74,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/verdana"
         android:gravity="center"
-        android:text="Record"
-        android:textSize="16dp"
+        android:text="@string/rec"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,8 +90,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/verdana"
         android:gravity="center"
-        android:text="Summary"
-        android:textSize="16dp"
+        android:text="@string/smr"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,8 +105,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/verdana"
         android:gravity="center"
-        android:text="Exit"
-        android:textSize="16dp"
+        android:text="@string/ext"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -136,7 +139,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.055"
-        app:srcCompat="@drawable/ucwdlogo" />
+        app:srcCompat="@drawable/ucwdlogo"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:id="@+id/employeenamecontainer"
@@ -154,7 +158,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            android:text="Employee\nname:"
+            android:text="@string/empName"
             android:textSize="21sp"
             android:textStyle="bold"
             android:fontFamily="@font/verdana"
@@ -184,8 +188,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            android:text="Year:"
-            android:layout_marginRight="47sp"
+            android:text="@string/yr"
+            android:layout_marginEnd="47dp"
             android:textSize="21sp"
             android:textStyle="bold"
             android:fontFamily="@font/verdana"
@@ -219,8 +223,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            android:text="Month:"
-            android:layout_marginRight="27sp"
+            android:text="@string/mnt"
+            android:layout_marginEnd="27dp"
             android:textSize="21sp"
             android:textStyle="bold"
             android:fontFamily="@font/verdana"
@@ -231,11 +235,7 @@
             android:layout_width="180dp"
             android:layout_height="80dp"
             android:background="@drawable/calendar_bgcol"
-            android:layout_gravity="center_vertical"
-            />
-
-
-
+            android:layout_gravity="center_vertical" />
     </LinearLayout>
 
     <android.widget.Button
@@ -243,19 +243,20 @@
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:background="@drawable/leavesummarybtn1_bg"
-        android:drawableRight="@drawable/continue_btnleavesummary"
-        android:padding="4dp"
+        android:drawableEnd="@drawable/continue_btnleavesummary"
         android:gravity="center"
-        android:text="Continue"
+        android:padding="4dp"
+        android:text="@string/cnt"
+        android:textAllCaps="false"
         android:textSize="19sp"
         android:textStyle="bold"
-        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.869"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.783" />
+        app:layout_constraintVertical_bias="0.783"
+        tools:ignore="TouchTargetSizeCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
