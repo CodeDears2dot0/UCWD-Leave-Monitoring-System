@@ -165,7 +165,8 @@
             android:padding="20dp"
             android:text="@string/empName"
             android:textSize="21sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="TextSizeCheck" />
 
         <SearchView
             android:layout_width="180dp"

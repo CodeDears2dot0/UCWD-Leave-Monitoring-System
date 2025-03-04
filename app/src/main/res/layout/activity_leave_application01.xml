@@ -423,6 +423,8 @@
     </androidx.cardview.widget.CardView>
 
 
+
+
     <ImageButton
         android:id="@+id/recbtn4"
         android:layout_width="95dp"
@@ -510,6 +512,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.970" />
+
+    <android.widget.Button
+        android:id="@+id/savebtn"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:background="@drawable/save_btn_bg"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.822" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
