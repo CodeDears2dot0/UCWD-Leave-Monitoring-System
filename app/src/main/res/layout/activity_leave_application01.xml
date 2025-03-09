@@ -64,7 +64,8 @@
                 android:layout_width="190dp"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                tools:ignore="UseCompoundDrawables">
                 <ImageView
                     android:id="@+id/image"
                     android:layout_width="60dp"
@@ -80,10 +81,6 @@
                     android:text="@string/empName"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"/>
-                <SearchView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/bg_border"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/secondInnerContainer"
@@ -264,15 +261,18 @@
                     android:layout_gravity="center_vertical"/>
 
                 <TextView
-                    android:layout_marginStart="17dp"
+                    android:id="@+id/aflNum"
+                    android:autofillHints=""
                     android:layout_width="170dp"
                     android:layout_height="50dp"
-                    android:text="@string/num"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="17dp"
                     android:background="@drawable/calendar_bgcol"
-                    android:layout_gravity="center_vertical"/>
+                    android:gravity="center"
+                    android:text="@string/xx"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
             </LinearLayout>
 
             <LinearLayout
@@ -297,17 +297,15 @@
                     android:fontFamily="@font/verdana"
                     android:layout_gravity="center_vertical"/>
 
-                <TextView
+                <Spinner
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:id="@+id/spinner"
                     android:layout_marginStart="7dp"
                     android:layout_width="170dp"
                     android:layout_height="50dp"
-                    android:text="@string/sLeave"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
                     android:background="@drawable/calendar_bgcol"
-                    android:layout_gravity="center_vertical"
-                    tools:ignore="VisualLintBounds" />
+                    android:layout_gravity="center_vertical"/>
             </LinearLayout>
 
             <LinearLayout
@@ -336,6 +334,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <TextView
+                    android:id="@+id/dateToday"
                     android:layout_width="170dp"
                     android:layout_height="50dp"
                     android:text="@string/dit"
@@ -359,6 +358,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:autofillHints=""
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:paddingStart="20dp"
@@ -370,16 +370,19 @@
                     android:layout_gravity="center_vertical"
                     tools:ignore="RtlSymmetry" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/numLeave"
                     android:layout_width="170dp"
                     android:layout_height="50dp"
-                    android:text="@string/three"
+                    android:hint="@string/one"
                     android:gravity="center"
+                    android:inputType="number"
                     android:textStyle="bold"
                     android:textSize="20sp"
                     android:layout_marginStart="24dp"
                     android:background="@drawable/calendar_bgcol"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical"
+                    tools:ignore="Autofill" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/dateOfLeave"
@@ -406,10 +409,12 @@
                     android:layout_gravity="center_vertical"
                     tools:ignore="RtlSymmetry" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/leaveDate"
                     android:layout_width="170dp"
                     android:layout_height="50dp"
-                    android:text="@string/dit"
+                    android:hint="@string/date"
+                    android:inputType="date"
                     android:gravity="center"
                     android:textStyle="bold"
                     android:textSize="20sp"
@@ -518,13 +523,14 @@
         android:layout_width="120dp"
         android:layout_height="48dp"
         android:background="@drawable/save_btn_bg"
-        android:text="Save"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.945"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.820" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.435" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/editTextID"
         android:layout_width="220sp"
         android:layout_height="50dp"
         android:background="@drawable/usernpassbgedittext"
@@ -63,10 +63,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.782" />
+        app:layout_constraintVertical_bias="0.782"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/editTextPassword"
         android:layout_width="220dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -94,7 +95,8 @@
         app:layout_constraintHorizontal_bias="0.352"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674" />
+        app:layout_constraintVertical_bias="0.674"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/loginbtn"
