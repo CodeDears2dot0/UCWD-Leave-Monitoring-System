@@ -13,6 +13,9 @@
         android:theme="@style/Theme.SoftEngDevTest"
         tools:targetApi="31">
         <activity
+            android:name=".Summary"
+            android:exported="false" />
+        <activity
             android:name=".LeaveApplicationActivity"
             android:exported="false" />
         <activity
@@ -20,9 +23,6 @@
             android:exported="false" />
         <activity
             android:name=".LeaveMonitor"
-            android:exported="false" />
-        <activity
-            android:name=".Summary"
             android:exported="false" />
         <activity
             android:name=".LeaveSummary"

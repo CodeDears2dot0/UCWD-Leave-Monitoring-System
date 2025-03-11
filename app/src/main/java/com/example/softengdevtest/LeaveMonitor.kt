@@ -51,7 +51,8 @@ class LeaveMonitor : AppCompatActivity() {
             startActivity(intent)
         }
         binding.summaryBtn.setOnClickListener {
-            val intent = Intent(this, LeaveSummary::class.java)
+            val intent = Intent(this, Summary::class.java)
+            intent.putExtra("username", user.toString())
             startActivity(intent)
         }
     }
