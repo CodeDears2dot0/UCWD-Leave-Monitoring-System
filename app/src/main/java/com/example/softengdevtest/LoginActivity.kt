@@ -6,14 +6,13 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.softengdevtest.databinding.ActivityLoginBinding
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 
+@Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
 
    private lateinit var binding: ActivityLoginBinding
@@ -34,33 +33,39 @@ class LoginActivity : AppCompatActivity() {
       editTextPassword = findViewById(R.id.editTextPassword)
 
       binding.loginbtn.setOnClickListener {
-         startActivity(Intent(this@LoginActivity, LeaveMonitor::class.java))
-         finish()
+         val id = editTextID.text.toString()
+         val pass = editTextPassword.text.toString()
+         if (id.isEmpty() && pass.isEmpty()){
+            editTextID.error = "Please Enter Employee ID"
+            editTextPassword.error = "Please Enter Password!!"
+         }else if (id.isEmpty())editTextID.error = "Please Enter Employee ID"
+         else if (pass.isEmpty())editTextPassword.error = "Please Enter Password!!"
+         else signInUser()
       }
       binding.signUp.setOnClickListener{
          var intent = Intent(this, SignUpActivity::class.java)
          startActivity(intent)
       }
    }
-   private fun signupUser(userID: String, password: String){
-      databaseReference.orderByChild("employeeID").equalTo(userID).addListenerForSingleValueEvent(object : ValueEventListener{
-         override fun onDataChange(dataSnapshot: DataSnapshot) {
-            if (dataSnapshot.exists()){
-               for (userSnapshot in dataSnapshot.children){
-                  val employeeData = userSnapshot.getValue(EmployeeData::class.java)
-
-                  if (employeeData != null && employeeData.employeePassword == password){
-                     Toast.makeText(this@LoginActivity, "Login Successful", Toast.LENGTH_SHORT).show()
-                     return
-                  }
-               }
+   private fun signInUser(){
+      val intent = Intent(this, LeaveMonitor::class.java)
+      val employeeId = editTextID.text.toString()
+      val employeePassword = editTextPassword.text.toString()
+      databaseReference.child(employeeId).get().addOnSuccessListener {
+         if (it.exists()){
+            val password = it.child("employeePassword").value
+            val username = it.child("fullName").value.toString()
+            val id = it.child("employeeID").value.toString()
+            if (password == employeePassword){
+               intent.putExtra("username", username)
+               intent.putExtra("id", id)
+               startActivity(intent)
+               Toast.makeText(this, "Login Successfully!!", Toast.LENGTH_LONG).show()
+               finish()
+            }else{
+               Toast.makeText(this, "Invalid Password", Toast.LENGTH_LONG).show()
             }
-            Toast.makeText(this@LoginActivity, "Invalid Username or Password", Toast.LENGTH_SHORT).show()
          }
-
-         override fun onCancelled(error: DatabaseError) {
-            Toast.makeText(this@LoginActivity, "Database Error: ${error.message}", Toast.LENGTH_SHORT).show()
-         }
-      })
+      }
    }
 }

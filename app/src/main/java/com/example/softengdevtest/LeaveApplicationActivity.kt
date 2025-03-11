@@ -23,14 +23,21 @@ class LeaveApplicationActivity : AppCompatActivity() {
    private lateinit var dateLeave : TextView
    private lateinit var numLeave : EditText
    private lateinit var dateOfLeave : EditText
+   private lateinit var userId : String
+   private lateinit var name : String
 
    @SuppressLint("MissingInflatedId")
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
       setContentView(R.layout.activity_leave_application01)
 
+      //Extras
+      name = intent.getStringExtra("username").toString()
+      userId = intent.getStringExtra("id").toString()
+
       val dataToday = intent?.getStringExtra("dateToday")
       typeLeave = findViewById<Spinner>(R.id.spinner)
+
       ArrayAdapter.createFromResource(
          this,
          R.array.leaves,
@@ -44,7 +51,7 @@ class LeaveApplicationActivity : AppCompatActivity() {
       dateLeave.text = dataToday
       numLeave = findViewById<EditText>(R.id.numLeave)
       dateOfLeave = findViewById<EditText>(R.id.leaveDate)
-
+      applicantName.text = name
       dbRef = FirebaseDatabase.getInstance().getReference("Leave Applicants")
 
 
@@ -65,15 +72,16 @@ class LeaveApplicationActivity : AppCompatActivity() {
 
    private fun saveApplicationLeave(){
       val employeeName = applicantName.text.toString()
-      val typeOfLeve = typeLeave.selectedItem.toString()
+      val typeOfLeave = typeLeave.selectedItem.toString()
       val dateLeave = dateLeave.text.toString()
       val numOfLeave = numLeave.text.toString()
       val leaveDate = dateOfLeave.text.toString()
 
 
-      val applicationID = dbRef.push().key!!
+      val applicationID = userId
+      val applicationRandomID = dbRef.push().key!!
 
-      val applicationLeave = ApplicationLeave(applicationID, "Carlo Joshua Quiming", typeOfLeve, dateLeave, numOfLeave, leaveDate)
+      val applicationLeave = ApplicationLeave(applicationID, employeeName, typeOfLeave, dateLeave, numOfLeave, leaveDate)
 
       if (numOfLeave.isEmpty() && leaveDate.isEmpty()) {
          numLeave.error = "Please enter the number of leave"
@@ -85,13 +93,15 @@ class LeaveApplicationActivity : AppCompatActivity() {
       else if (leaveDate.isEmpty()) {
          dateOfLeave.error = "Please enter the date of leave"
       }else{
-         dbRef.child(applicationID).setValue(applicationLeave)
+         dbRef.child(applicationID).child(applicationRandomID).setValue(applicationLeave)
             .addOnCompleteListener {
                Toast.makeText(this, "Leave Application Submitted Successfully", Toast.LENGTH_LONG).show()
             }.addOnFailureListener { err ->
                Toast.makeText(this, "Failed to submit leave application ${err.message}", Toast.LENGTH_LONG).show()
             }
          val intent = Intent(this, LeaveMonitor::class.java)
+         intent.putExtra("username", name)
+         intent.putExtra("id", userId)
          startActivity(intent)
       }
    }

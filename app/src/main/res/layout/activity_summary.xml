@@ -294,7 +294,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="50dp"
                 android:fontFamily="@font/verdana"
                 android:text="@string/summary_TofLeave"
                 android:textSize="15sp"
@@ -304,7 +304,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="60dp"
+                android:layout_marginStart="50dp"
                 android:fontFamily="@font/verdana"
                 android:text="@string/summary_DofLeave"
                 android:textSize="15sp"
@@ -445,28 +445,7 @@
                 android:text="xx-xx-xxxx"
                 android:textSize="11sp"
                 android:textStyle="bold" />
-
-
         </LinearLayout>
-
-        <android.widget.Button
-            android:id="@+id/another"
-            android:layout_width="165dp"
-            android:layout_height="30dp"
-            android:background="@drawable/leavesummarybtn1_bg"
-            android:drawableRight="@drawable/continue_btnleavesummary"
-            android:paddingStart="7dp"
-            android:paddingEnd="7dp"
-            android:text="Submit Another"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.941"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.970"
-            tools:ignore="TouchTargetSizeCheck" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
