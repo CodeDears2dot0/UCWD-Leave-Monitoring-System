@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "296370915817",
-    "project_id": "softengdevtest",
-    "storage_bucket": "softengdevtest.firebasestorage.app"
+    "project_number": "839479132489",
+    "project_id": "ucwd-9c592",
+    "storage_bucket": "ucwd-9c592.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:296370915817:android:24f4c48ac70f6ee9d52378",
+        "mobilesdk_app_id": "1:839479132489:android:718b8f16a303826b4f1a98",
         "android_client_info": {
           "package_name": "com.example.softengdevtest"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBM5raQmP0yfMzJRVJbJPSwU25EhKaXiAg"
+          "current_key": "AIzaSyBeDiQvPqm7gOtOVBZWxoOuiLvRiuk3tgQ"
         }
       ],
       "services": {
