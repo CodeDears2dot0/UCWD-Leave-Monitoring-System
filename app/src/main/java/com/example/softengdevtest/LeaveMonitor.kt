@@ -13,19 +13,37 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class LeaveMonitor : AppCompatActivity() {
-
+    private lateinit var stats : TextView
     private lateinit var binding : ActivityLeaveMonitorBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityLeaveMonitorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val username = findViewById<TextView>(R.id.username)
 
         //Extras
         val userId = intent.getStringExtra("id")
         val user = intent.getStringExtra("username")
+        val status = intent.getStringExtra("status")
         username.text = user
+
+        // SharedPref
+        val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
+        if (status == null){
+            stats = findViewById(R.id.stats)
+            stats.text = sharedPref.getString("status", "No Leave Application")
+        } else {
+            stats = findViewById(R.id.stats)
+            stats.text = status
+            editor.apply {
+                putString("status", status)
+                apply()
+            }
+        }
 
         binding.exitBtn.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -41,14 +59,24 @@ class LeaveMonitor : AppCompatActivity() {
             builder.create().show()
         }
         binding.recbtn.setOnClickListener {
-            val intent = Intent(this, LeaveApplicationActivity::class.java)
-            val dateToday = Calendar.getInstance().time
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            val formattedDate = dateFormat.format(dateToday)
-            intent.putExtra("dateToday", formattedDate)
-            intent.putExtra("username", user.toString())
-            intent.putExtra("id", userId)
-            startActivity(intent)
+            if (status == "No Leave Application") {
+                val intent = Intent(this, LeaveApplicationActivity::class.java)
+                val dateToday = Calendar.getInstance().time
+                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val formattedDate = dateFormat.format(dateToday)
+                intent.putExtra("dateToday", formattedDate)
+                intent.putExtra("username", user.toString())
+                intent.putExtra("id", userId)
+                startActivity(intent)
+            }else {
+                val builder = AlertDialog.Builder(this)
+                    .setTitle("Leave Application")
+                    .setMessage("You already submitted a leave application. Wait until the admin approves your application to submit another leave application")
+                    .setPositiveButton("OK") {dialog, _->
+                        dialog.dismiss()
+                    }
+                builder.create().show()
+            }
         }
         binding.summaryBtn.setOnClickListener {
             val intent = Intent(this, Summary::class.java)
@@ -65,7 +93,7 @@ class LeaveMonitor : AppCompatActivity() {
     private fun myCustomFunction() {
         val builder = AlertDialog.Builder(this)
             .setTitle("Exit Application")
-            .setMessage("Are you sure you want to Exit this applicationt?")
+            .setMessage("Are you sure you want to Exit this Application?")
             .setPositiveButton("Yes") {_, _->
                 finishAffinity()
                 finish()

@@ -27,12 +27,10 @@ class LeaveApplicationActivity : AppCompatActivity() {
    private lateinit var dateOfLeave : EditText
    private lateinit var userId : String
    private lateinit var name : String
-
    @SuppressLint("MissingInflatedId")
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
       setContentView(R.layout.activity_leave_application01)
-
       //Extras
       name = intent.getStringExtra("username").toString()
       userId = intent.getStringExtra("id").toString()
@@ -56,14 +54,13 @@ class LeaveApplicationActivity : AppCompatActivity() {
       applicantName.text = name
       dbRef = FirebaseDatabase.getInstance().getReference("Leave Applicants")
 
-
-
       findViewById<Button>(R.id.savebtn).setOnClickListener {
          val builder = AlertDialog.Builder(this)
          builder.setTitle("Confirm Leave Application")
             .setMessage("Are you sure you want to submit this leave application?")
             .setPositiveButton("Yes") {_, _ ->
                saveApplicationLeave()
+
             }
             .setNegativeButton("No") {dialog, _ ->
                dialog.dismiss()
@@ -78,11 +75,14 @@ class LeaveApplicationActivity : AppCompatActivity() {
       val dateLeave = dateLeave.text.toString()
       val numOfLeave = numLeave.text.toString()
       val leaveDate = dateOfLeave.text.toString()
-
-      db.collection("Leave Applicants").document(userId).set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate))
+      db.collection("Leave Applicants").document(userId).collection("Leave Application").document("First Leave").set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate))
          .addOnSuccessListener {
             Toast.makeText(this, "Leave Application Successfully", Toast.LENGTH_LONG).show()
-            startActivity(Intent(this, LeaveMonitor::class.java))
+            val intent = Intent(this, LeaveMonitor::class.java)
+            intent.putExtra("status", "Pending")
+            intent.putExtra("username", name)
+            intent.putExtra("id", userId)
+            startActivity(intent)
          }
          .addOnFailureListener {
             Toast.makeText(this, "Leave Application Failed", Toast.LENGTH_LONG).show()
