@@ -10,8 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.softengdevtest.databinding.ActivitySignUpBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
+   private var db = Firebase.firestore
    private lateinit var dbRef: DatabaseReference
    private lateinit var editTextEmpName: EditText
    private lateinit var editTextEmpID: EditText
@@ -46,35 +49,14 @@ class SignUpActivity : AppCompatActivity() {
       val employeeID = editTextEmpID.text.toString()
       val employeeEmail = editTextEmail.text.toString()
       val employeePassword = editTextPassword.text.toString()
-      dbRef.child(employeeID).get().addOnSuccessListener {
-         if (it.exists()){
-            Toast.makeText(this, "Employee already Exist!", Toast.LENGTH_LONG).show()
-         }else {
-            if (fullName.isEmpty() && employeeID.isEmpty() && employeeEmail.isEmpty() && employeePassword.isEmpty()) {
-               editTextEmpName.error = "Please enter your full name"
-               editTextEmpID.error = "Please enter your employee ID"
-               editTextEmail.error = "Please enter your email"
-               editTextPassword.error = "Please enter your password"
-            } else if (fullName.isEmpty()) {
-               editTextEmpName.error = "Please enter your full name"
-            } else if (employeeID.isEmpty()) {
-               editTextEmpID.error = "Please enter your employee ID"
-            } else if (employeeEmail.isEmpty()) {
-               editTextEmail.error = "Please enter your email"
-            } else if (employeePassword.isEmpty()) {
-               editTextPassword.error = "Please enter your password"
-            } else {
-               val employeeData = EmployeeData(fullName, employeeID, employeeEmail, employeePassword)
-               dbRef.child(employeeID).setValue(employeeData)
-                  .addOnCompleteListener {
-                     Toast.makeText(this, "Employee Data Saved Successfully", Toast.LENGTH_LONG).show()
-                  }.addOnFailureListener { err ->
-                     Toast.makeText(this, "Failed to save employee data ${err.message}", Toast.LENGTH_LONG).show()
-                  }
-               val intent = Intent(this, LoginActivity::class.java)
-               startActivity(intent)
-            }
+
+      db.collection("Employees Accounts").document(employeeID).set(EmployeeData(fullName, employeeID, employeeEmail, employeePassword))
+         .addOnSuccessListener {
+            Toast.makeText(this, "Employee Account Created Successfully", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, LoginActivity::class.java))
          }
-      }
+         .addOnFailureListener {
+            Toast.makeText(this, "Employee Account Creation Failed", Toast.LENGTH_LONG).show()
+         }
    }
 }

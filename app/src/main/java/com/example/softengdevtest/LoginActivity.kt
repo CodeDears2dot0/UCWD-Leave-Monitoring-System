@@ -6,15 +6,16 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.softengdevtest.databinding.ActivityLoginBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 @Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
-
+   private var db = Firebase.firestore
    private lateinit var binding: ActivityLoginBinding
    private lateinit var firebaseDatabase: FirebaseDatabase
    private lateinit var databaseReference: DatabaseReference
@@ -51,21 +52,29 @@ class LoginActivity : AppCompatActivity() {
       val intent = Intent(this, LeaveMonitor::class.java)
       val employeeId = editTextID.text.toString()
       val employeePassword = editTextPassword.text.toString()
-      databaseReference.child(employeeId).get().addOnSuccessListener {
+      val ref = db.collection("Employees Accounts").document(employeeId)
+      ref.get().addOnSuccessListener {
          if (it.exists()){
-            val password = it.child("employeePassword").value
-            val username = it.child("fullName").value.toString()
-            val id = it.child("employeeID").value.toString()
+            val name = it.getString("fullName")
+            val id = it.getString("employeeID")
+            val password = it.getString("employeePassword")
             if (password == employeePassword){
-               intent.putExtra("username", username)
+               intent.putExtra("username", name)
                intent.putExtra("id", id)
                startActivity(intent)
-               Toast.makeText(this, "Login Successfully!!", Toast.LENGTH_LONG).show()
-               finish()
             }else{
-               Toast.makeText(this, "Invalid Password", Toast.LENGTH_LONG).show()
+               Toast.makeText(this, "Incorrect Password", Toast.LENGTH_LONG).show()
+               editTextPassword.error = "Incorrect Password"
             }
          }
       }
+      ref.get().addOnFailureListener {
+         Toast.makeText(this, "Employee ID does not exist", Toast.LENGTH_LONG).show()
+         editTextID.error = "Employee ID does not exist"
+      }
    }
 }
+
+
+
+

@@ -13,10 +13,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class LeaveApplicationActivity : AppCompatActivity() {
-
+   private var db = Firebase.firestore
    private lateinit var dbRef: DatabaseReference
    private lateinit var applicantName : TextView
    private lateinit var typeLeave : Spinner
@@ -77,32 +79,13 @@ class LeaveApplicationActivity : AppCompatActivity() {
       val numOfLeave = numLeave.text.toString()
       val leaveDate = dateOfLeave.text.toString()
 
-
-      val applicationID = userId
-      val applicationRandomID = dbRef.push().key!!
-
-      val applicationLeave = ApplicationLeave(applicationID, employeeName, typeOfLeave, dateLeave, numOfLeave, leaveDate)
-
-      if (numOfLeave.isEmpty() && leaveDate.isEmpty()) {
-         numLeave.error = "Please enter the number of leave"
-         dateOfLeave.error = "Please enter the date of leave"
-      }
-      else if (numOfLeave.isEmpty()) {
-         numLeave.error = "Please enter the number of leave"
-      }
-      else if (leaveDate.isEmpty()) {
-         dateOfLeave.error = "Please enter the date of leave"
-      }else{
-         dbRef.child(applicationID).child(applicationRandomID).setValue(applicationLeave)
-            .addOnCompleteListener {
-               Toast.makeText(this, "Leave Application Submitted Successfully", Toast.LENGTH_LONG).show()
-            }.addOnFailureListener { err ->
-               Toast.makeText(this, "Failed to submit leave application ${err.message}", Toast.LENGTH_LONG).show()
-            }
-         val intent = Intent(this, LeaveMonitor::class.java)
-         intent.putExtra("username", name)
-         intent.putExtra("id", userId)
-         startActivity(intent)
-      }
+      db.collection("Leave Applicants").document(userId).set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate))
+         .addOnSuccessListener {
+            Toast.makeText(this, "Leave Application Successfully", Toast.LENGTH_LONG).show()
+            startActivity(Intent(this, LeaveMonitor::class.java))
+         }
+         .addOnFailureListener {
+            Toast.makeText(this, "Leave Application Failed", Toast.LENGTH_LONG).show()
+         }
    }
 }
