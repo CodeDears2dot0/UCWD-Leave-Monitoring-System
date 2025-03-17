@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.032" />
 
     <TextView
-        android:id="@+id/WelcomeTV"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/verdana"
@@ -58,10 +58,10 @@
         android:layout_height="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.851"
-        app:layout_constraintStart_toEndOf="@+id/WelcomeTV"
+        app:layout_constraintHorizontal_bias="0.865"
+        app:layout_constraintStart_toEndOf="@+id/username"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.052"
+        app:layout_constraintVertical_bias="0.044"
         app:srcCompat="@drawable/wc_admin_person"
         tools:ignore="ContentDescription" />
 
@@ -186,6 +186,51 @@
         app:layout_constraintVertical_bias="0.127"
         app:srcCompat="@drawable/ucwdlogo"
         tools:ignore="ContentDescription" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/summary_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView"
+        app:layout_constraintVertical_bias="0.504">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:rowCount="1"
+            android:columnCount="2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/verdana"
+                android:layout_columnWeight="1"
+                android:layout_column="0"
+                android:layout_rowWeight="1"
+                android:textStyle="bold"
+                android:text="Leave Status:"
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/stats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/verdana"
+                android:layout_columnWeight="1"
+                android:layout_column="1"
+                android:layout_rowWeight="1"
+                android:text="Pending"
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
+
+
+
+        </GridLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
