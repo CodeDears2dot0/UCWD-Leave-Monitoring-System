@@ -27,6 +27,8 @@ class LeaveApplicationActivity : AppCompatActivity() {
    private lateinit var dateOfLeave : EditText
    private lateinit var userId : String
    private lateinit var name : String
+   private var applicationNum : Int = 0
+   private var applicationNumNext : Int = 0
    @SuppressLint("MissingInflatedId")
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
@@ -35,8 +37,19 @@ class LeaveApplicationActivity : AppCompatActivity() {
       name = intent.getStringExtra("username").toString()
       userId = intent.getStringExtra("id").toString()
 
+      //Shared Preferences
+      val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
+      val editor = sharedPref.edit()
+      applicationNum = sharedPref.getInt("leaveNum", 0)
+      if (applicationNum == applicationNumNext){
+         applicationNumNext = applicationNum + 1
+         editor.apply {
+            putInt("leaveNum", applicationNumNext).apply()
+         }
+      }
+
       val dataToday = intent?.getStringExtra("dateToday")
-      typeLeave = findViewById<Spinner>(R.id.spinner)
+      typeLeave = findViewById(R.id.spinner)
 
       ArrayAdapter.createFromResource(
          this,
@@ -46,11 +59,11 @@ class LeaveApplicationActivity : AppCompatActivity() {
          adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
          typeLeave.adapter = adapter
       }
-      applicantName = findViewById<TextView>(R.id.employeeName)
-      dateLeave = findViewById<TextView>(R.id.dateToday)
+      applicantName = findViewById(R.id.employeeName)
+      dateLeave = findViewById(R.id.dateToday)
       dateLeave.text = dataToday
-      numLeave = findViewById<EditText>(R.id.numLeave)
-      dateOfLeave = findViewById<EditText>(R.id.leaveDate)
+      numLeave = findViewById(R.id.numLeave)
+      dateOfLeave = findViewById(R.id.leaveDate)
       applicantName.text = name
       dbRef = FirebaseDatabase.getInstance().getReference("Leave Applicants")
 
@@ -75,11 +88,10 @@ class LeaveApplicationActivity : AppCompatActivity() {
       val dateLeave = dateLeave.text.toString()
       val numOfLeave = numLeave.text.toString()
       val leaveDate = dateOfLeave.text.toString()
-      db.collection("Leave Applicants").document(userId).collection("Leave Application").document("First Leave").set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate))
+      db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $applicationNumNext").set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate))
          .addOnSuccessListener {
             Toast.makeText(this, "Leave Application Successfully", Toast.LENGTH_LONG).show()
             val intent = Intent(this, LeaveMonitor::class.java)
-            intent.putExtra("status", "Pending")
             intent.putExtra("username", name)
             intent.putExtra("id", userId)
             startActivity(intent)
