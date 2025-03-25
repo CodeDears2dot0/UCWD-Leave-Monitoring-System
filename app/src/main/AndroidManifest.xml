@@ -17,15 +17,12 @@
             android:exported="false" />
         <activity
             android:name=".LeaveApplicationActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".SignUpActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".LeaveMonitor"
-            android:exported="false" />
-        <activity
-            android:name=".LeaveSummary"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

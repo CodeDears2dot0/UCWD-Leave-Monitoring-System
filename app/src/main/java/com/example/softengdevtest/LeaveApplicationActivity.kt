@@ -27,7 +27,8 @@ class LeaveApplicationActivity : AppCompatActivity() {
    private lateinit var dateOfLeave : EditText
    private lateinit var userId : String
    private lateinit var name : String
-   private var quantifier = 0
+   private var applicationNum : Int = 0
+   private var applicationNumNext : Int = 0
    @SuppressLint("MissingInflatedId")
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
@@ -36,16 +37,19 @@ class LeaveApplicationActivity : AppCompatActivity() {
       name = intent.getStringExtra("username").toString()
       userId = intent.getStringExtra("id").toString()
 
-
-      // SharedPref
+      //Shared Preferences
       val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
       val editor = sharedPref.edit()
+      applicationNum = sharedPref.getInt("leaveNum", 0)
+      if (applicationNum == applicationNumNext){
+         applicationNumNext = applicationNum + 1
+         editor.apply {
+            putInt("leaveNum", applicationNumNext).apply()
+         }
+      }
 
-      var leaveNo = sharedPref.getInt("quantifier", 0)
-      leaveNo += 1
-      quantifier = leaveNo
       val dataToday = intent?.getStringExtra("dateToday")
-      typeLeave = findViewById<Spinner>(R.id.spinner)
+      typeLeave = findViewById(R.id.spinner)
 
       ArrayAdapter.createFromResource(
          this,
@@ -55,24 +59,21 @@ class LeaveApplicationActivity : AppCompatActivity() {
          adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
          typeLeave.adapter = adapter
       }
-      applicantName = findViewById<TextView>(R.id.employeeName)
-      dateLeave = findViewById<TextView>(R.id.dateToday)
+      applicantName = findViewById(R.id.employeeName)
+      dateLeave = findViewById(R.id.dateToday)
       dateLeave.text = dataToday
-      numLeave = findViewById<EditText>(R.id.numLeave)
-      dateOfLeave = findViewById<EditText>(R.id.leaveDate)
+      numLeave = findViewById(R.id.numLeave)
+      dateOfLeave = findViewById(R.id.leaveDate)
       applicantName.text = name
       dbRef = FirebaseDatabase.getInstance().getReference("Leave Applicants")
 
       findViewById<Button>(R.id.savebtn).setOnClickListener {
-         editor.apply {
-            putInt("quantifier", leaveNo)
-            apply()
-         }
          val builder = AlertDialog.Builder(this)
          builder.setTitle("Confirm Leave Application")
             .setMessage("Are you sure you want to submit this leave application?")
             .setPositiveButton("Yes") {_, _ ->
                saveApplicationLeave()
+
             }
             .setNegativeButton("No") {dialog, _ ->
                dialog.dismiss()
@@ -87,12 +88,10 @@ class LeaveApplicationActivity : AppCompatActivity() {
       val dateLeave = dateLeave.text.toString()
       val numOfLeave = numLeave.text.toString()
       val leaveDate = dateOfLeave.text.toString()
-
-      db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $quantifier").set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate))
+      db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $applicationNumNext").set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate))
          .addOnSuccessListener {
             Toast.makeText(this, "Leave Application Successfully", Toast.LENGTH_LONG).show()
             val intent = Intent(this, LeaveMonitor::class.java)
-            intent.putExtra("status", "Pending")
             intent.putExtra("username", name)
             intent.putExtra("id", userId)
             startActivity(intent)

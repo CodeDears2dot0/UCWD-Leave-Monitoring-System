@@ -24,109 +24,171 @@
         tools:ignore="ContentDescription" />
 
     <TextView
+        android:id="@+id/sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/leaguespartanbold"
         android:text="@string/snUp"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView3"
         app:layout_constraintVertical_bias="0.435" />
 
 
-    <EditText
-        android:id="@+id/editTextEmpName"
-        android:layout_width="220sp"
-        android:layout_height="50dp"
-        android:layout_marginTop="420dp"
-        android:background="@drawable/usernpassbgedittext"
-        android:drawableStart="@drawable/useredittext_24"
-        android:drawablePadding="4dp"
-        android:ems="10"
-        android:hint="@string/employeeName"
-        android:inputType="text"
-        android:paddingStart="6dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_forName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="Autofill,RtlSymmetry" />
+        app:layout_constraintTop_toBottomOf="@id/textInput_forID"
+        app:layout_constraintVertical_bias="0.593">
 
-    <EditText
-        android:id="@+id/editTextempID"
-        android:layout_width="220sp"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/usernpassbgedittext"
-        android:drawableStart="@drawable/useredittext_24"
-        android:drawablePadding="4dp"
-        android:ems="10"
-        android:hint="@string/empID"
-        android:inputType="text"
-        android:paddingStart="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmpName"
-        tools:ignore="Autofill,RtlSymmetry" />
+        <EditText
+            android:id="@+id/editTextEmpName"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="148dp"
+            android:drawableStart="@drawable/useredittext_24"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:hint="@string/employeeName"
+            android:inputType="text"
+            android:paddingStart="6dp"
+            tools:ignore="Autofill,RtlSymmetry,TextContrastCheck" />
 
-    <EditText
-        android:id="@+id/editTextemail"
-        android:layout_width="220sp"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/usernpassbgedittext"
-        android:drawableStart="@drawable/user_email"
-        android:drawablePadding="4dp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
-        android:paddingStart="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextempID"
-        tools:ignore="Autofill,RtlSymmetry" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/usernpassbgedittext"
-        android:drawableStart="@drawable/passwordedittext_24"
-        android:drawablePadding="4dp"
-        android:ems="10"
-        android:hint="@string/pass"
-        android:inputType="textPassword"
-        android:paddingStart="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextemail"
-        tools:ignore="Autofill,RtlSymmetry" />
 
-    <EditText
-        android:id="@+id/editTextrePassword"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:background="@drawable/usernpassbgedittext"
-        android:drawableStart="@drawable/passwordedittext_24"
-        android:drawablePadding="4dp"
-        android:ems="10"
-        android:hint="@string/rePass"
-        android:inputType="textPassword"
-        android:paddingStart="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_forID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
-        app:layout_constraintVertical_bias="0.061"
-        tools:ignore="Autofill,RtlSymmetry,VisualLintOverlap" />
+        app:layout_constraintTop_toBottomOf="@id/sign_up">
+
+        <EditText
+            android:id="@+id/editTextempID"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            android:drawableStart="@drawable/useredittext_24"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:hint="@string/empID"
+            android:inputType="text"
+            android:paddingStart="6dp"
+            tools:ignore="Autofill,RtlSymmetry,TextContrastCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_forEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInput_forName"
+        app:layout_constraintVertical_bias="0.685">
+
+        <EditText
+            android:id="@+id/editTextemail"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            android:drawableStart="@drawable/user_email"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="6dp"
+
+            tools:ignore="Autofill,RtlSymmetry,TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_forPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInput_forEmail"
+        app:layout_constraintVertical_bias="0.777">
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            android:drawableStart="@drawable/passwordedittext_24"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:hint="@string/pass"
+            android:inputType="textPassword"
+            android:paddingStart="6dp"
+            tools:ignore="Autofill,RtlSymmetry,TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInput_forRePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
+        app:endIconMode="clear_text"
+        app:helperText="Required"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInput_forPassword">
+
+        <EditText
+            android:id="@+id/editTextrePassword"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:drawableStart="@drawable/passwordedittext_24"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:hint="@string/rePass"
+            android:inputType="textPassword"
+            android:paddingStart="6dp"
+
+            tools:ignore="Autofill,RtlSymmetry,VisualLintOverlap,TextContrastCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/createbtn"
@@ -140,9 +202,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.869"
-        tools:ignore="TextContrastCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/textInput_forRePassword"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextContrastCheck,VisualLintBounds" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:max="100"
+        app:layout_constraintBottom_toBottomOf="@+id/textInput_forPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
