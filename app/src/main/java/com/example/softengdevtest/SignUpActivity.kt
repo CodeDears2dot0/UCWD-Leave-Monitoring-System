@@ -43,15 +43,14 @@ class SignUpActivity : AppCompatActivity() {
       editTextPassword = findViewById(R.id.editTextPassword)
       editTextRePassword = findViewById(R.id.editTextrePassword)
       createBtn = findViewById(R.id.createbtn)
+
       editTextPassword.addTextChangedListener(object : TextWatcher {
          override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             //Do Something
          }
-
          override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             //Do Something
          }
-
          override fun afterTextChanged(s: Editable?) {
             val password = s.toString()
             val strength = calculatePasswordStrength(password)
@@ -69,7 +68,6 @@ class SignUpActivity : AppCompatActivity() {
             }
          }
       })
-
       dbRef = FirebaseDatabase.getInstance().getReference("Employees Accounts")
       createBtn.setOnClickListener {
          if (editTextEmpName.text.toString().isEmpty() || editTextEmpID.text.toString().isEmpty() || editTextEmail.text.toString().isEmpty() || editTextPassword.text.toString().isEmpty()){
@@ -83,36 +81,58 @@ class SignUpActivity : AppCompatActivity() {
             saveEmployeeData()
          }
       }
-
    }
    private fun saveEmployeeData(){
       if (editTextPassword.text.toString() != editTextRePassword.text.toString()) {
          editTextPassword.error = "Password does not match"
          editTextRePassword.error = "Password does not match"
       }else {
-         val fullName = editTextEmpName.text.toString()
-         val employeeID = editTextEmpID.text.toString()
-         val employeeEmail = editTextEmail.text.toString()
-         val employeePassword = editTextPassword.text.toString()
+         if (!checkIfExists()){
+            val fullName = editTextEmpName.text.toString()
+            val employeeID = editTextEmpID.text.toString()
+            val employeeEmail = editTextEmail.text.toString()
+            val employeePassword = editTextPassword.text.toString()
 
-         db.collection("Employees Accounts").document(employeeID)
-            .set(EmployeeData(fullName, employeeID, employeeEmail, employeePassword))
-            .addOnSuccessListener {
-               Toast.makeText(this, "Employee Account Created Successfully", Toast.LENGTH_LONG)
-                  .show()
-               startActivity(Intent(this, LoginActivity::class.java))
-            }
-            .addOnFailureListener {
-               Toast.makeText(this, "Employee Account Creation Failed", Toast.LENGTH_LONG).show()
-            }
+
+            db.collection("Employees Accounts").document(employeeID)
+               .set(EmployeeData(fullName, employeeID, employeeEmail, employeePassword))
+               .addOnSuccessListener {
+                  Toast.makeText(this, "Employee Account Created Successfully", Toast.LENGTH_LONG)
+                     .show()
+                  startActivity(Intent(this, LoginActivity::class.java))
+               }
+               .addOnFailureListener {
+                  Toast.makeText(this, "Employee Account Creation Failed", Toast.LENGTH_LONG).show()
+               }
+         }
+         else{
+            Toast.makeText(this, "Employee Account Already Exists", Toast.LENGTH_LONG).show()
+         }
       }
    }
-   private fun calculatePasswordStrength(password: String): String{
+   private fun calculatePasswordStrength(password: String): String {
       progressBar.visibility = View.VISIBLE
       return when {
          password.length < 8 -> "Weak"
-         "!" in password || "@" in password || "#" in password || "$" in password || "%" in password || "^" in password || "&" in password || "*" in password -> "Medium"
-         else -> "Strong"
+         password.length >= 8 && containsSpecialCharacter(password) && !containsUpperCase(password) -> "Medium"
+         password.length >= 8 && containsSpecialCharacter(password) && containsUpperCase(password) -> "Strong"
+         else -> "Weak"
       }
+   }
+   private fun containsSpecialCharacter(password: String): Boolean {
+      val specialCharacters = "!@#$%^&*"
+      return password.any { it in specialCharacters }
+   }
+   private fun containsUpperCase(password: String): Boolean {
+      for (letter in password) {
+         if (letter.isUpperCase()) {
+            return true
+         }
+      }
+      return false
+   }
+   private fun checkIfExists(): Boolean{
+      val ref = db.collection("Employees Accounts").document(editTextEmpID.text.toString())
+      return ref.get().isSuccessful
    }
 }

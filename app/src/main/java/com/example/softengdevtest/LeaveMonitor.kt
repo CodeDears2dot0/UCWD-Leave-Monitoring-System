@@ -90,6 +90,7 @@ class LeaveMonitor : AppCompatActivity() {
         binding.summaryBtn.setOnClickListener {
             val intent = Intent(this, Summary::class.java)
             intent.putExtra("username", user.toString())
+            intent.putExtra("id", userId)
             startActivity(intent)
         }
     }
@@ -112,6 +113,7 @@ class LeaveMonitor : AppCompatActivity() {
             }
         builder.create().show()
     }
+    @SuppressLint("SetTextI18n")
     private fun checkIfPending(){
         val ref = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $applicationNum")
         ref.get().addOnSuccessListener {
@@ -121,8 +123,10 @@ class LeaveMonitor : AppCompatActivity() {
             }
             else {
                 Toast.makeText(this, "No Leave Application", Toast.LENGTH_LONG).show()
+                stats.text = "No Leave Application"
             }
         }
+
 
     }
 }

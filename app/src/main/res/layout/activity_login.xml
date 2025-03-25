@@ -18,7 +18,8 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/textView"
@@ -33,7 +34,8 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.435" />
+        app:layout_constraintVertical_bias="0.435"
+        tools:ignore="HardcodedText,SpUsage" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -53,16 +55,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <EditText
-            android:textColor="@color/black"
             android:id="@+id/editTextID"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/useredittext_24"
             android:drawablePadding="4dp"
             android:ems="10"
-            android:hint="Username"
+            android:hint="Employee ID"
             android:inputType="text"
-            android:paddingHorizontal="6dp" />
+            android:paddingHorizontal="6dp"
+            android:textColor="@color/black"
+            tools:ignore="Autofill,HardcodedText,TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,12 +91,13 @@
             android:layout_marginTop="20dp"
             android:drawableStart="@drawable/passwordedittext_24"
             android:drawablePadding="4dp"
-            app:endIconMode="password_toggle"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
             android:paddingStart="6dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            app:endIconMode="password_toggle"
+            tools:ignore="Autofill,HardcodedText,RtlSymmetry,TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +113,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.782"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,VisualLintOverlap" />
 
 
     <Button
@@ -125,7 +129,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInput_forPassword"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.086"
+        tools:ignore="HardcodedText,TextContrastCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
