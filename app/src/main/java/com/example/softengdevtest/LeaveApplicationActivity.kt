@@ -27,6 +27,7 @@ class LeaveApplicationActivity : AppCompatActivity() {
    private lateinit var dateOfLeave : EditText
    private lateinit var userId : String
    private lateinit var name : String
+   private var quantifier = 0
    @SuppressLint("MissingInflatedId")
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
@@ -35,6 +36,14 @@ class LeaveApplicationActivity : AppCompatActivity() {
       name = intent.getStringExtra("username").toString()
       userId = intent.getStringExtra("id").toString()
 
+
+      // SharedPref
+      val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
+      val editor = sharedPref.edit()
+
+      var leaveNo = sharedPref.getInt("quantifier", 0)
+      leaveNo += 1
+      quantifier = leaveNo
       val dataToday = intent?.getStringExtra("dateToday")
       typeLeave = findViewById<Spinner>(R.id.spinner)
 
@@ -55,12 +64,15 @@ class LeaveApplicationActivity : AppCompatActivity() {
       dbRef = FirebaseDatabase.getInstance().getReference("Leave Applicants")
 
       findViewById<Button>(R.id.savebtn).setOnClickListener {
+         editor.apply {
+            putInt("quantifier", leaveNo)
+            apply()
+         }
          val builder = AlertDialog.Builder(this)
          builder.setTitle("Confirm Leave Application")
             .setMessage("Are you sure you want to submit this leave application?")
             .setPositiveButton("Yes") {_, _ ->
                saveApplicationLeave()
-
             }
             .setNegativeButton("No") {dialog, _ ->
                dialog.dismiss()
@@ -75,7 +87,8 @@ class LeaveApplicationActivity : AppCompatActivity() {
       val dateLeave = dateLeave.text.toString()
       val numOfLeave = numLeave.text.toString()
       val leaveDate = dateOfLeave.text.toString()
-      db.collection("Leave Applicants").document(userId).collection("Leave Application").document("First Leave").set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate))
+
+      db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $quantifier").set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate))
          .addOnSuccessListener {
             Toast.makeText(this, "Leave Application Successfully", Toast.LENGTH_LONG).show()
             val intent = Intent(this, LeaveMonitor::class.java)

@@ -258,6 +258,7 @@
         app:layout_constraintBottom_toBottomOf="@id/Viewcontainer">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/calendar_bgcol"
@@ -321,139 +322,62 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/employeenamecontainer"
-            android:layout_width="345dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/nude2color_bg"
-            android:orientation="horizontal"
+        <ScrollView
+            android:layout_width="344dp"
+            android:layout_height="223dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.36">
+            app:layout_constraintTop_toTopOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.893">
+            <LinearLayout
+                android:id="@+id/employeenamecontainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/nude2color_bg"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/verdana"
-                android:text="0001"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/leaveNum"
+                    android:paddingVertical="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/verdana"
+                    android:text="0001"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="60dp"
-                android:fontFamily="@font/verdana"
-                android:text="Vacation Leave"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/leaveType"
+                    android:paddingVertical="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="60dp"
+                    android:fontFamily="@font/verdana"
+                    android:text="Vacation Leave"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="60dp"
-                android:fontFamily="@font/verdana"
-                android:text="xx-xx-xxxx"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="345dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/nude2color_bg"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.55">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/verdana"
-                android:text="0002"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="60dp"
-                android:fontFamily="@font/verdana"
-                android:text="Vacation Leave"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="60dp"
-                android:fontFamily="@font/verdana"
-                android:text="xx-xx-xxxx"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/dateOfLeave"
+                    android:paddingVertical="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="60dp"
+                    android:fontFamily="@font/verdana"
+                    android:text="xx-xx-xxxx"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
 
 
-        </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
 
-        <LinearLayout
-            android:layout_width="345dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="125dp"
-            android:background="@drawable/nude2color_bg"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/verdana"
-                android:text="0003"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="60dp"
-                android:fontFamily="@font/verdana"
-                android:text="Vacation Leave"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="60dp"
-                android:fontFamily="@font/verdana"
-                android:text="xx-xx-xxxx"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
