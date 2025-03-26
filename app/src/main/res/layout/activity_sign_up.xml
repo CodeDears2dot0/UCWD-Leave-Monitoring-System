@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:counterEnabled="true"
-        app:counterMaxLength="20"
+        app:counterMaxLength="100"
         app:endIconMode="clear_text"
         app:helperText="Required"
         app:boxStrokeColor="@color/black"
@@ -103,7 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:counterEnabled="true"
-        app:counterMaxLength="20"
+        app:counterMaxLength="50"
         app:endIconMode="clear_text"
         app:helperText="Required"
         app:boxStrokeColor="@color/black"
@@ -135,7 +135,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:counterEnabled="true"
-        app:counterMaxLength="20"
+        app:counterMaxLength="30"
         app:endIconMode="clear_text"
         app:helperText="Required"
         app:boxStrokeColor="@color/black"
@@ -166,7 +166,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:counterEnabled="true"
-        app:counterMaxLength="20"
+        app:counterMaxLength="30"
         app:endIconMode="clear_text"
         app:helperText="Required"
         app:boxStrokeColor="@color/black"
@@ -186,7 +186,6 @@
             android:hint="@string/rePass"
             android:inputType="textPassword"
             android:paddingStart="6dp"
-
             tools:ignore="Autofill,RtlSymmetry,VisualLintOverlap,TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 

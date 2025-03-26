@@ -186,7 +186,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="15dp"
             android:fontFamily="@font/verdana"
-            android:text="Available Leave:"
+            android:text="Used Leave:"
             android:textSize="15sp"
             android:textStyle="bold"
             tools:ignore="HardcodedText" />

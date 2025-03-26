@@ -31,9 +31,20 @@
     <string name="ditLeave">Date of Leave:</string>
     <string-array name="leaves">
         <item>Sick Leave</item>
-        <item>Paternity Leave</item>
-        <item>Public holidays</item>
+        <item>Vacation Leave</item>
+        <item>Birthday Leave</item>
+        <item>Bereavement Leave</item>
+        <item>Service Incentive Leave</item>
         <item>Maternity Leave</item>
+        <item>Paternity Leave</item>
+        <item>Solo Parent Leave</item>
+        <item>Special Leave for Women</item>
+        <item>official Business Leave</item>
+    </string-array>
+    <string-array name="quality">
+        <item>First Half</item>
+        <item>Second Half</item>
+        <item>Whole Day</item>
     </string-array>
     <string name="save">Save</string>
     <string name="one">1</string>
@@ -49,4 +60,7 @@
     <string name="pass">Password</string>
     <string name="rePass">Retype Password</string>
     <string name="create">Create Account</string>
+    <string name="quan">Quantity:</string>
+    <string name="res">Reason:</string>
+    <string name="whyLeave">Reason to leave work</string>
 </resources>

@@ -54,152 +54,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.196">
-        <LinearLayout
-            android:id="@id/topContainer"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:id="@+id/innerContainer"
-                android:layout_width="190dp"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/baseline_person_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.047"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.575"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/employeeName"
+                android:layout_width="265dp"
+                android:layout_height="61dp"
                 android:gravity="center"
-                tools:ignore="UseCompoundDrawables">
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/baseline_person_24"
-                    tools:ignore="ContentDescription" />
-                <TextView
-                    android:id="@+id/employeeName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:text="@string/empName"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/secondInnerContainer"
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:id="@+id/leaveAvailableContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                    <TextView
-                        android:id="@+id/leaveAvailable"
-                        android:textStyle="bold"
-                        android:layout_marginTop="3dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="@string/availLeave"
-                        tools:ignore="VisualLintBounds" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/availableLeaveBoard"
-                    android:layout_width="200dp"
-                    android:layout_height="69dp"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:id="@+id/availableLeaveBoardVLSL"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-                        <LinearLayout
-                            android:id="@+id/vlslContainer"
-                            android:layout_width="50dp"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="@string/vl"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginVertical="10dp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="@string/sl"
-                                android:layout_marginStart="20dp"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/vlslContainerBoard"
-                            android:layout_width="50dp"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="@string/xx"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginVertical="10dp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="@string/xx"
-                                android:layout_marginStart="5dp"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/availableLeaveBoardFLSPL"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        tools:ignore="VisualLintBounds">
-                        <LinearLayout
-                            android:id="@+id/flsplContainer"
-                            android:layout_width="50dp"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="@string/fl"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginVertical="10dp"
-                                tools:ignore="RtlHardcoded" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="@string/spl"
-                                android:layout_marginStart="20dp"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/flsplContainerBoard"
-                            android:layout_width="50dp"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="@string/xx"
-                                android:layout_marginStart="5dp"
-                                android:layout_marginVertical="10dp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textStyle="bold"
-                                android:text="@string/xx"
-                                android:layout_marginStart="5dp"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+                android:textSize="20sp"
+                android:text="@string/empName"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.259"
+                app:layout_constraintStart_toEndOf="@+id/image"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.589" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -238,190 +127,238 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.033" />
 
-            <LinearLayout
-                android:id="@+id/employeenamecontainer"
-                android:layout_width="345dp"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_border"
+            <ScrollView
+                android:layout_width="356dp"
+                android:layout_height="314dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.487"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.170">
-                <TextView
-                    android:layout_width="wrap_content"
+                app:layout_constraintVertical_bias="0.813">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:text="@string/aflNum"
-                    android:layout_marginEnd="55dp"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/verdana"
-                    android:layout_gravity="center_vertical"/>
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/aflNum"
-                    android:autofillHints=""
-                    android:layout_width="170dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="17dp"
-                    android:background="@drawable/calendar_bgcol"
-                    android:gravity="center"
-                    android:text="@string/xx"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
-            </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/typesOfLeaves"
+                        android:layout_width="345dp"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/bg_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.36">
+                        <TextView
+                            android:id="@+id/TVemployeename"
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:padding="20dp"
+                            android:text="@string/type"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/verdana"
+                            android:layout_gravity="center_vertical"/>
 
-            <LinearLayout
-                android:id="@+id/typesOfLeaves"
-                android:layout_width="345dp"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_border"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.36">
-                <TextView
-                    android:id="@+id/TVemployeename"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:text="@string/type"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/verdana"
-                    android:layout_gravity="center_vertical"/>
+                        <Spinner
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:id="@+id/spinner"
+                            android:layout_width="170dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/calendar_bgcol"
+                            android:layout_gravity="center_vertical"/>
+                    </LinearLayout>
 
-                <Spinner
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:id="@+id/spinner"
-                    android:layout_marginStart="7dp"
-                    android:layout_width="170dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/calendar_bgcol"
-                    android:layout_gravity="center_vertical"/>
-            </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/dateOfApplication"
+                        android:layout_width="345dp"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/bg_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.55">
+                        <TextView
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="20dp"
+                            android:paddingStart="20dp"
+                            android:text="@string/dateApp"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/verdana"
+                            android:layout_gravity="center_vertical"
+                            tools:ignore="RtlSymmetry" />
 
-            <LinearLayout
-                android:id="@+id/dateOfApplication"
-                android:layout_width="345dp"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_border"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.55">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:paddingStart="20dp"
-                    android:text="@string/dateApp"
-                    android:layout_marginStart="2dp"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/verdana"
-                    android:layout_gravity="center_vertical"
-                    tools:ignore="RtlSymmetry" />
+                        <TextView
+                            android:id="@+id/dateToday"
+                            android:layout_width="170dp"
+                            android:layout_height="50dp"
+                            android:text="@string/dit"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:background="@drawable/calendar_bgcol"
+                            android:layout_gravity="center_vertical"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/numberOfDays"
+                        android:layout_width="345dp"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/bg_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.74">
+                        <TextView
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:autofillHints=""
+                            android:paddingTop="20dp"
+                            android:paddingBottom="20dp"
+                            android:paddingStart="20dp"
+                            android:text="@string/numDays"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/verdana"
+                            android:layout_gravity="center_vertical"
+                            tools:ignore="RtlSymmetry" />
 
-                <TextView
-                    android:id="@+id/dateToday"
-                    android:layout_width="170dp"
-                    android:layout_height="50dp"
-                    android:text="@string/dit"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:background="@drawable/calendar_bgcol"
-                    android:layout_gravity="center_vertical"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/numberOfDays"
-                android:layout_width="345dp"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_border"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.74">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:paddingStart="20dp"
-                    android:text="@string/numDays"
-                    android:layout_marginStart="2dp"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/verdana"
-                    android:layout_gravity="center_vertical"
-                    tools:ignore="RtlSymmetry" />
+                        <EditText
+                            android:id="@+id/numLeave"
+                            android:layout_width="170dp"
+                            android:layout_height="50dp"
+                            android:hint="@string/one"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:background="@drawable/calendar_bgcol"
+                            android:layout_gravity="center_vertical"
+                            tools:ignore="Autofill" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/dateOfLeave"
+                        android:layout_width="345dp"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/bg_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.93">
+                        <TextView
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="20dp"
+                            android:paddingStart="20dp"
+                            android:text="@string/ditLeave"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/verdana"
+                            android:layout_gravity="center_vertical"
+                            tools:ignore="RtlSymmetry" />
 
-                <EditText
-                    android:id="@+id/numLeave"
-                    android:layout_width="170dp"
-                    android:layout_height="50dp"
-                    android:hint="@string/one"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:layout_marginStart="24dp"
-                    android:background="@drawable/calendar_bgcol"
-                    android:layout_gravity="center_vertical"
-                    tools:ignore="Autofill" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/dateOfLeave"
-                android:layout_width="345dp"
-                android:layout_height="60dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_border"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.93">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:paddingStart="20dp"
-                    android:text="@string/ditLeave"
-                    android:layout_marginStart="2dp"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/verdana"
-                    android:layout_gravity="center_vertical"
-                    tools:ignore="RtlSymmetry" />
+                        <TextView
+                            android:id="@+id/leaveDate"
+                            android:layout_width="170dp"
+                            android:layout_height="50dp"
+                            android:text="@string/date"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:background="@drawable/calendar_bgcol"
+                            android:layout_gravity="center_vertical"
+                            tools:ignore="Autofill" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/quantityOfLeave"
+                        android:layout_width="345dp"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/bg_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.93">
+                        <TextView
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="20dp"
+                            android:paddingStart="20dp"
+                            android:text="@string/quan"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/verdana"
+                            android:layout_gravity="center_vertical"
+                            tools:ignore="RtlSymmetry" />
 
-                <EditText
-                    android:id="@+id/leaveDate"
-                    android:layout_width="170dp"
-                    android:layout_height="50dp"
-                    android:hint="@string/date"
-                    android:inputType="date"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:layout_marginStart="40dp"
-                    android:background="@drawable/calendar_bgcol"
-                    android:layout_gravity="center_vertical"/>
-            </LinearLayout>
+                        <Spinner
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:id="@+id/spinner2"
+                            android:layout_width="170dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/calendar_bgcol"
+                            android:layout_gravity="center_vertical"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/reasonOfLeave"
+                        android:layout_width="345dp"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/bg_border"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.93">
+                        <TextView
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="20dp"
+                            android:paddingStart="20dp"
+                            android:text="@string/res"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/verdana"
+                            android:layout_gravity="center_vertical"
+                            tools:ignore="RtlSymmetry" />
+
+                        <EditText
+                            android:id="@+id/reason"
+                            android:layout_width="170dp"
+                            android:layout_height="50dp"
+                            android:hint="@string/whyLeave"
+                            android:inputType="text"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:background="@drawable/calendar_bgcol"
+                            android:layout_gravity="center_vertical"
+                            tools:ignore="Autofill" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </ScrollView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -530,6 +467,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.820" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
+        android:layout_width="380dp"
+        android:layout_height="425dp"
+        app:layout_constraintVertical_bias="0.587"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,18 +19,18 @@ class Summary : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_summary)
         val username = intent.getStringExtra("username")
-        val userName = findViewById<TextView>(R.id.username)
         userId = intent.getStringExtra("id").toString()
+        val userName = findViewById<TextView>(R.id.username)
         userName.text = username.toString()
         leaveNum = findViewById(R.id.leaveNum)
         leaveType = findViewById(R.id.leaveType)
         dateOfLeave = findViewById(R.id.dateOfLeave)
 
-        val ref = db.collection("Leave Applicants").document(userId.toString()).collection("Leave Application")
+        val ref = db.collection("Leave Applicants").document(userId).collection("Leave Application")
         ref.get().addOnSuccessListener {querySnapshot ->
             val documentCount = querySnapshot.size()
             getLeaveData(documentCount)
-        }.addOnFailureListener { exception ->
+        }.addOnFailureListener {
             Toast.makeText(this, "No Data Found", Toast.LENGTH_SHORT).show()
         }
     }
