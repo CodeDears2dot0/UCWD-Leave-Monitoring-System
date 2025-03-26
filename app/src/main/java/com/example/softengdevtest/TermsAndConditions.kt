@@ -17,7 +17,7 @@ class TermsAndConditions : Fragment() {
     private var empID: String? = null
     private var empEmail: String? = null
     private var empPassword: String? = null
-
+    private var isCancelled: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,6 +27,7 @@ class TermsAndConditions : Fragment() {
             empID = it.getString("empID")
             empEmail = it.getString("empEmail")
             empPassword = it.getString("empPassword")
+            isCancelled = it.getString("isCancelled")
         }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_terms_and_conditions, container, false)
@@ -41,21 +42,25 @@ class TermsAndConditions : Fragment() {
             if (isChecked) {
                 save.visibility = View.VISIBLE
                 save.setOnClickListener {
+                    isCancelled = "true"
                     val intent = Intent(requireContext(), SignUpActivity::class.java)
                     intent.putExtra("empName", empName)
                     intent.putExtra("empID", empID)
                     intent.putExtra("empEmail", empEmail)
                     intent.putExtra("empPassword", empPassword)
+                    intent.putExtra("isCancelled", isCancelled)
                     startActivity(intent)
                 }
             }
         }
         cancel.setOnClickListener {
+            isCancelled = "false"
             val intent = Intent(requireContext(), SignUpActivity::class.java)
             intent.putExtra("empName", empName)
             intent.putExtra("empID", empID)
             intent.putExtra("empEmail", empEmail)
             intent.putExtra("empPassword", empPassword)
+            intent.putExtra("isCancelled", isCancelled)
             startActivity(intent)
         }
     }

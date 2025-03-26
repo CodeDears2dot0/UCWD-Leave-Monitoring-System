@@ -470,7 +470,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainer"
-        android:layout_width="380dp"
+        android:layout_width="390dp"
         android:layout_height="425dp"
         app:layout_constraintVertical_bias="0.587"
         app:layout_constraintTop_toTopOf="parent"

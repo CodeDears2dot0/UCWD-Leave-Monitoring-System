@@ -41,6 +41,7 @@ class SignUpActivity : AppCompatActivity() {
       setContentView(binding.root)
 
       // Create and Initializing Intents and Fields
+      val isCancelled = intent.getStringExtra("isCancelled")
       val empName = intent.getStringExtra("empName")
       val empID = intent.getStringExtra("empID")
       val empEmail = intent.getStringExtra("empEmail")
@@ -91,6 +92,7 @@ class SignUpActivity : AppCompatActivity() {
                putString("empID", editTextEmpID.text.toString())
                putString("empEmail", editTextEmail.text.toString())
                putString("empPassword", editTextPassword.text.toString())
+               putString("isCancelled", "false")
             }
             editTextPassword.visibility = View.INVISIBLE
             editTextRePassword.visibility = View.INVISIBLE
@@ -147,32 +149,37 @@ class SignUpActivity : AppCompatActivity() {
             builder.create().show()
          }
       }
-      saveEmployeeData()
+      if (isCancelled == "false" || isCancelled == null){
+         Toast.makeText(this, "Sign Up", Toast.LENGTH_LONG).show()
+      }else {
+         checking { result ->
+            if (result != null) {
+               Toast.makeText(this, "Employee ID already exists", Toast.LENGTH_LONG).show()
+            } else {
+               saveEmployeeData()
+            }
+         }
+         saveEmployeeData()
+      }
    }
    private fun saveEmployeeData(){
       if ((editTextPassword.text.toString() != editTextRePassword.text.toString()) || (editTextPassword.text.isEmpty() && editTextRePassword.text.isEmpty())) {
          Toast.makeText(this, "Fill all fields correctly", Toast.LENGTH_LONG).show()
       }else {
-         if (!checkIfExists()){
-            val fullName = editTextEmpName.text.toString()
-            val employeeID = editTextEmpID.text.toString()
-            val employeeEmail = editTextEmail.text.toString()
-            val employeePassword = editTextPassword.text.toString()
-
-            db.collection("Employees Accounts").document(employeeID)
-               .set(EmployeeData(fullName, employeeID, employeeEmail, employeePassword))
-               .addOnSuccessListener {
-                  Toast.makeText(this, "Employee Account Created Successfully", Toast.LENGTH_LONG)
-                     .show()
-                  startActivity(Intent(this, LoginActivity::class.java))
-               }
-               .addOnFailureListener {
-                  Toast.makeText(this, "Employee Account Creation Failed", Toast.LENGTH_LONG).show()
-               }
-         }
-         else{
-            Toast.makeText(this, "Employee Account Already Exists", Toast.LENGTH_LONG).show()
-         }
+         val fullName = editTextEmpName.text.toString()
+         val employeeID = editTextEmpID.text.toString()
+         val employeeEmail = editTextEmail.text.toString()
+         val employeePassword = editTextPassword.text.toString()
+         db.collection("Employees Accounts").document(employeeID)
+            .set(EmployeeData(fullName, employeeID, employeeEmail, employeePassword))
+            .addOnSuccessListener {
+               Toast.makeText(this, "Employee Account Created Successfully", Toast.LENGTH_LONG)
+                  .show()
+               startActivity(Intent(this, LoginActivity::class.java))
+            }
+            .addOnFailureListener {
+               Toast.makeText(this, "Employee Account Creation Failed", Toast.LENGTH_LONG).show()
+            }
       }
    }
    private fun calculatePasswordStrength(password: String): String {
@@ -196,10 +203,18 @@ class SignUpActivity : AppCompatActivity() {
       }
       return false
    }
-   private fun checkIfExists(): Boolean{
+
+   // Savior Code
+   private fun checking(callback: (String?) -> Unit) {
       val ref = db.collection("Employees Accounts").document(editTextEmpID.text.toString())
-      return ref.get().isSuccessful
+      ref.get().addOnSuccessListener { document ->
+         val id = document.get("employeeID")
+         callback(id?.toString()) // Call the callback with the result
+      }.addOnFailureListener {
+         callback(null) // Handle errors by sending null
+      }
    }
+
    private fun goToFragment(fragment: Fragment, data: Bundle) {
       fragment.arguments = data
       fragmentManager = supportFragmentManager
