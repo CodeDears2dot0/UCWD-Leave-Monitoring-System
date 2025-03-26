@@ -42,7 +42,7 @@
         android:drawableStart="@drawable/useredittext_24"
         android:drawablePadding="4dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="Employee ID"
         android:inputType="text"
         android:paddingStart="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.782"
+        app:layout_constraintVertical_bias="0.762"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -85,19 +85,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.617" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:text="Remember Me"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.352"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674"
-        tools:ignore="TouchTargetSizeCheck" />
-
     <Button
         android:id="@+id/loginbtn"
         android:layout_width="180dp"
@@ -108,10 +95,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.733" />
+        app:layout_constraintVertical_bias="0.711" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

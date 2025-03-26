@@ -35,7 +35,7 @@ class LeaveMonitor : AppCompatActivity() {
 
         if (status == null){
             stats = findViewById(R.id.stats)
-            stats.text = sharedPref.getString("status", "No Leave Application")
+            stats.text = sharedPref.getString("status", null)
         } else {
             stats = findViewById(R.id.stats)
             stats.text = status
@@ -59,7 +59,7 @@ class LeaveMonitor : AppCompatActivity() {
             builder.create().show()
         }
         binding.recbtn.setOnClickListener {
-            if (status == "No Leave Application") {
+            if (stats.text == "Pending" || stats.text == null) {
                 val intent = Intent(this, LeaveApplicationActivity::class.java)
                 val dateToday = Calendar.getInstance().time
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
@@ -68,7 +68,7 @@ class LeaveMonitor : AppCompatActivity() {
                 intent.putExtra("username", user.toString())
                 intent.putExtra("id", userId)
                 startActivity(intent)
-            }else {
+            }else if (stats.text.toString() == "Approved"){
                 val builder = AlertDialog.Builder(this)
                     .setTitle("Leave Application")
                     .setMessage("You already submitted a leave application. Wait until the admin approves your application to submit another leave application")
