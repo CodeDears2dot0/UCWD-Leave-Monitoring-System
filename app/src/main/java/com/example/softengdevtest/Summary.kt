@@ -13,6 +13,8 @@ class Summary : AppCompatActivity() {
     private lateinit var leaveNum : TextView
     private lateinit var leaveType : TextView
     private lateinit var dateOfLeave : TextView
+    private lateinit var reqLeaves : TextView
+    private lateinit var appLeaves : TextView
     private var userId : String = "Something"
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +24,10 @@ class Summary : AppCompatActivity() {
         userId = intent.getStringExtra("id").toString()
         val userName = findViewById<TextView>(R.id.username)
         userName.text = username.toString()
+
+        // Initialized TextViews
+        reqLeaves = findViewById(R.id.reqLeaves)
+        appLeaves = findViewById(R.id.appLeaves)
         leaveNum = findViewById(R.id.leaveNum)
         leaveType = findViewById(R.id.leaveType)
         dateOfLeave = findViewById(R.id.dateOfLeave)
@@ -30,6 +36,8 @@ class Summary : AppCompatActivity() {
         ref.get().addOnSuccessListener {querySnapshot ->
             val documentCount = querySnapshot.size()
             getLeaveData(documentCount)
+            reqLeaves.text = documentCount.toString()
+            returnApprovedLeaves(documentCount)
         }.addOnFailureListener {
             Toast.makeText(this, "No Data Found", Toast.LENGTH_SHORT).show()
         }
@@ -51,5 +59,18 @@ class Summary : AppCompatActivity() {
                 }
             }
         }
+    }
+    private fun returnApprovedLeaves(num: Int){
+        var counter = 0
+        for (number in num downTo 0) {
+            var ref = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $number")
+            ref.get().addOnSuccessListener {
+                val status = it.getString("applicationStatus")
+                if (status == "Approved"){
+                    counter++
+                }
+            }
+        }
+        appLeaves.text = counter.toString()
     }
 }

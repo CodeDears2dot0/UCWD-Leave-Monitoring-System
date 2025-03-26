@@ -10,7 +10,10 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.softengdevtest.databinding.ActivitySignUpBinding
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.DatabaseReference
@@ -19,6 +22,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
+   private lateinit var fragmentManager: FragmentManager
    private var db = Firebase.firestore
    private lateinit var dbRef: DatabaseReference
    private lateinit var editTextEmpName: EditText
@@ -35,6 +39,19 @@ class SignUpActivity : AppCompatActivity() {
       enableEdgeToEdge()
       binding = ActivitySignUpBinding.inflate(layoutInflater)
       setContentView(binding.root)
+
+      // Create and Initializing Intents and Fields
+      val empName = intent.getStringExtra("empName")
+      val empID = intent.getStringExtra("empID")
+      val empEmail = intent.getStringExtra("empEmail")
+      val empPassword = intent.getStringExtra("empPassword")
+      val empRePassword = intent.getStringExtra("empPassword")
+      val nameField = findViewById<TextInputLayout>(R.id.textInput_forName)
+      val idField = findViewById<TextInputLayout>(R.id.textInput_forID)
+      val emailField = findViewById<TextInputLayout>(R.id.textInput_forEmail)
+      val rePasswordField = findViewById<TextInputLayout>(R.id.textInput_forRePassword)
+
+      // Initializing IDs
       progressBar = findViewById(R.id.progressBar)
       textInputForPassword = findViewById(R.id.textInput_forPassword)
       editTextEmpName = findViewById(R.id.editTextEmpName)
@@ -43,6 +60,55 @@ class SignUpActivity : AppCompatActivity() {
       editTextPassword = findViewById(R.id.editTextPassword)
       editTextRePassword = findViewById(R.id.editTextrePassword)
       createBtn = findViewById(R.id.createbtn)
+
+      // Setting Texts
+      editTextEmpName.setText(empName)
+      editTextEmpID.setText(empID)
+      editTextEmail.setText(empEmail)
+      editTextPassword.setText(empPassword)
+      editTextRePassword.setText(empRePassword)
+
+      // Visibility
+      nameField.visibility = View.VISIBLE
+      idField.visibility = View.VISIBLE
+      emailField.visibility = View.VISIBLE
+      rePasswordField.visibility = View.VISIBLE
+      textInputForPassword.visibility = View.VISIBLE
+      editTextPassword.visibility = View.VISIBLE
+      editTextRePassword.visibility = View.VISIBLE
+      progressBar.visibility = View.VISIBLE
+      createBtn.visibility = View.VISIBLE
+      editTextEmpName.visibility = View.VISIBLE
+      editTextEmpID.visibility = View.VISIBLE
+      editTextEmail.visibility = View.VISIBLE
+
+      val builder = AlertDialog.Builder(this)
+         .setTitle("Confirm Sign Up")
+         .setMessage("Are you sure you want to sign up with your provided credentials?")
+         .setPositiveButton("Yes") {_, _ ->
+            val bundle = Bundle().apply {
+               putString("empName", editTextEmpName.text.toString())
+               putString("empID", editTextEmpID.text.toString())
+               putString("empEmail", editTextEmail.text.toString())
+               putString("empPassword", editTextPassword.text.toString())
+            }
+            editTextPassword.visibility = View.INVISIBLE
+            editTextRePassword.visibility = View.INVISIBLE
+            progressBar.visibility = View.INVISIBLE
+            createBtn.visibility = View.INVISIBLE
+            editTextEmpName.visibility = View.INVISIBLE
+            editTextEmpID.visibility = View.INVISIBLE
+            editTextEmail.visibility = View.INVISIBLE
+            textInputForPassword.visibility = View.INVISIBLE
+            nameField.visibility = View.INVISIBLE
+            idField.visibility = View.INVISIBLE
+            emailField.visibility = View.INVISIBLE
+            rePasswordField.visibility = View.INVISIBLE
+            goToFragment(TermsAndConditions(), bundle)
+         }
+         .setNegativeButton("No") { dialog, _ ->
+            dialog.dismiss()
+         }
 
       editTextPassword.addTextChangedListener(object : TextWatcher {
          override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -78,21 +144,20 @@ class SignUpActivity : AppCompatActivity() {
             editTextEmpID.error = "Please fill in all fields"
             editTextEmail.error = "Please fill in all fields"
          }else{
-            saveEmployeeData()
+            builder.create().show()
          }
       }
+      saveEmployeeData()
    }
    private fun saveEmployeeData(){
-      if (editTextPassword.text.toString() != editTextRePassword.text.toString()) {
-         editTextPassword.error = "Password does not match"
-         editTextRePassword.error = "Password does not match"
+      if ((editTextPassword.text.toString() != editTextRePassword.text.toString()) || (editTextPassword.text.isEmpty() && editTextRePassword.text.isEmpty())) {
+         Toast.makeText(this, "Fill all fields correctly", Toast.LENGTH_LONG).show()
       }else {
          if (!checkIfExists()){
             val fullName = editTextEmpName.text.toString()
             val employeeID = editTextEmpID.text.toString()
             val employeeEmail = editTextEmail.text.toString()
             val employeePassword = editTextPassword.text.toString()
-
 
             db.collection("Employees Accounts").document(employeeID)
                .set(EmployeeData(fullName, employeeID, employeeEmail, employeePassword))
@@ -134,5 +199,10 @@ class SignUpActivity : AppCompatActivity() {
    private fun checkIfExists(): Boolean{
       val ref = db.collection("Employees Accounts").document(editTextEmpID.text.toString())
       return ref.get().isSuccessful
+   }
+   private fun goToFragment(fragment: Fragment, data: Bundle) {
+      fragment.arguments = data
+      fragmentManager = supportFragmentManager
+      fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit()
    }
 }
