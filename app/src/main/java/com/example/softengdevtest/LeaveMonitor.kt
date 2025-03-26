@@ -5,45 +5,54 @@ import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.softengdevtest.databinding.ActivityLeaveMonitorBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class LeaveMonitor : AppCompatActivity() {
     private lateinit var stats : TextView
+    private var db = Firebase.firestore
+    private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var databaseReference: DatabaseReference
     private lateinit var binding : ActivityLeaveMonitorBinding
+    private var applicationNum : Int = 0
+    private var applicationNumNext : Int = 0
+    private lateinit var userId : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityLeaveMonitorBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val username = findViewById<TextView>(R.id.username)
-
+        stats = findViewById(R.id.stats)
         //Extras
-        val userId = intent.getStringExtra("id")
         val user = intent.getStringExtra("username")
-        val status = intent.getStringExtra("status")
+        userId = intent.getStringExtra("id").toString()
         username.text = user
+        checkIfPending()
+        // Firebase FireStore Implementation
+        firebaseDatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebaseDatabase.getReference("Leave Applicants")
 
         // SharedPref
         val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
         val editor = sharedPref.edit()
-
-        if (status == null){
-            stats = findViewById(R.id.stats)
-            stats.text = sharedPref.getString("status", null)
-        } else {
-            stats = findViewById(R.id.stats)
-            stats.text = status
+        applicationNum = sharedPref.getInt("leaveNum", 0)
+        if (applicationNum == applicationNumNext){
+            applicationNumNext = applicationNum + 1
             editor.apply {
-                putString("status", status)
-                apply()
+                putInt("leaveNum", applicationNumNext).apply()
             }
         }
+
 
         binding.exitBtn.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -59,7 +68,7 @@ class LeaveMonitor : AppCompatActivity() {
             builder.create().show()
         }
         binding.recbtn.setOnClickListener {
-            if (stats.text == "Pending" || stats.text == null) {
+            if (stats.text == "No Leave Application" || stats.text == "null") {
                 val intent = Intent(this, LeaveApplicationActivity::class.java)
                 val dateToday = Calendar.getInstance().time
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
@@ -68,7 +77,7 @@ class LeaveMonitor : AppCompatActivity() {
                 intent.putExtra("username", user.toString())
                 intent.putExtra("id", userId)
                 startActivity(intent)
-            }else if (stats.text.toString() == "Approved"){
+            }else {
                 val builder = AlertDialog.Builder(this)
                     .setTitle("Leave Application")
                     .setMessage("You already submitted a leave application. Wait until the admin approves your application to submit another leave application")
@@ -81,6 +90,7 @@ class LeaveMonitor : AppCompatActivity() {
         binding.summaryBtn.setOnClickListener {
             val intent = Intent(this, Summary::class.java)
             intent.putExtra("username", user.toString())
+            intent.putExtra("id", userId)
             startActivity(intent)
         }
     }
@@ -102,5 +112,21 @@ class LeaveMonitor : AppCompatActivity() {
                 dialog.dismiss()
             }
         builder.create().show()
+    }
+    @SuppressLint("SetTextI18n")
+    private fun checkIfPending(){
+        val ref = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $applicationNum")
+        ref.get().addOnSuccessListener {
+            if (it.exists()) {
+                val status = it.getString("applicationStatus").toString()
+                stats.text = status
+            }
+            else {
+                Toast.makeText(this, "No Leave Application", Toast.LENGTH_LONG).show()
+                stats.text = "No Leave Application"
+            }
+        }
+
+
     }
 }

@@ -13,7 +13,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-@Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
    private var db = Firebase.firestore
    private lateinit var binding: ActivityLoginBinding
@@ -44,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
          else signInUser()
       }
       binding.signUp.setOnClickListener{
-         var intent = Intent(this, SignUpActivity::class.java)
+         val intent = Intent(this, SignUpActivity::class.java)
          startActivity(intent)
       }
    }

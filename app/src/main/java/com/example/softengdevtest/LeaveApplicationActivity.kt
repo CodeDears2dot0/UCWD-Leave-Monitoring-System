@@ -27,8 +27,8 @@ class LeaveApplicationActivity : AppCompatActivity() {
    private lateinit var dateOfLeave : EditText
    private lateinit var userId : String
    private lateinit var name : String
-   private var leaveNo = 0
-   private var initialNum = 3
+   private var applicationNum : Int = 0
+   private var applicationNumNext : Int = 0
    @SuppressLint("MissingInflatedId")
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
@@ -37,11 +37,19 @@ class LeaveApplicationActivity : AppCompatActivity() {
       name = intent.getStringExtra("username").toString()
       userId = intent.getStringExtra("id").toString()
 
+      //Shared Preferences
+      val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
+      val editor = sharedPref.edit()
+      applicationNum = sharedPref.getInt("leaveNum", 0)
+      if (applicationNum == applicationNumNext){
+         applicationNumNext = applicationNum + 1
+         editor.apply {
+            putInt("leaveNum", applicationNumNext).apply()
+         }
+      }
+
       val dataToday = intent?.getStringExtra("dateToday")
       typeLeave = findViewById(R.id.spinner)
-
-      val sharedPreferences = getSharedPreferences("myPref", MODE_PRIVATE)
-      val editor = sharedPreferences.edit()
 
       ArrayAdapter.createFromResource(
          this,
@@ -59,26 +67,19 @@ class LeaveApplicationActivity : AppCompatActivity() {
       applicantName.text = name
       dbRef = FirebaseDatabase.getInstance().getReference("Leave Applicants")
 
-      if (initialNum >= leaveNo) {
-         initialNum++
-         editor.apply {
-            putInt("int", initialNum)
-            apply()
-         }
-      }
-      leaveNo = sharedPreferences.getInt("int", 0)
-
       findViewById<Button>(R.id.savebtn).setOnClickListener {
          val builder = AlertDialog.Builder(this)
          builder.setTitle("Confirm Leave Application")
             .setMessage("Are you sure you want to submit this leave application?")
             .setPositiveButton("Yes") {_, _ ->
                saveApplicationLeave()
+
             }
             .setNegativeButton("No") {dialog, _ ->
                dialog.dismiss()
             }.show()
       }
+
    }
 
    private fun saveApplicationLeave(){
@@ -87,11 +88,10 @@ class LeaveApplicationActivity : AppCompatActivity() {
       val dateLeave = dateLeave.text.toString()
       val numOfLeave = numLeave.text.toString()
       val leaveDate = dateOfLeave.text.toString()
-      db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $leaveNo").set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate))
+      db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $applicationNumNext").set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate))
          .addOnSuccessListener {
             Toast.makeText(this, "Leave Application Successfully", Toast.LENGTH_LONG).show()
             val intent = Intent(this, LeaveMonitor::class.java)
-            intent.putExtra("status", "Pending")
             intent.putExtra("username", name)
             intent.putExtra("id", userId)
             startActivity(intent)

@@ -6,5 +6,6 @@ data class ApplicationLeave(
     var applicationDate: String,
     var applicationLeaveType: String,
     val applicationLeaveDays: String,
-    val applicationLeaveDate: String
+    val applicationLeaveDate: String,
+    val applicationStatus: String = "Pending"
     )
