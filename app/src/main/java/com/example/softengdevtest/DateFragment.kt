@@ -23,6 +23,8 @@ class DateFragment : Fragment() {
     private var receivedDate : String? = null
     private var receivedTypePos : Int? = null
     private var receivedQualityPos : Int? = null
+    private var receivedReason: String? = null
+    private var receivedDays : String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +36,8 @@ class DateFragment : Fragment() {
             receivedId = it.getString("id")
             receivedTypePos = it.getInt("typeOfLeave")
             receivedQualityPos = it.getInt("quality")
+            receivedReason = it.getString("reason")
+            receivedDays = it.getString("days")
         }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_date, container, false)
@@ -51,6 +55,8 @@ class DateFragment : Fragment() {
             intent.putExtra("dateWhenLeave", dateString)
             intent.putExtra("typeOfLeave", receivedTypePos)
             intent.putExtra("quality", receivedQualityPos)
+            intent.putExtra("reason", receivedReason)
+            intent.putExtra("days", receivedDays)
             startActivity(intent)
         }
 
@@ -76,6 +82,8 @@ class DateFragment : Fragment() {
             intent.putExtra("dateWhenLeave", dateString)
             intent.putExtra("typeOfLeave", receivedTypePos)
             intent.putExtra("quality", receivedQualityPos)
+            intent.putExtra("reason", receivedReason)
+            intent.putExtra("days", receivedDays)
             startActivity(intent)
         }
     }

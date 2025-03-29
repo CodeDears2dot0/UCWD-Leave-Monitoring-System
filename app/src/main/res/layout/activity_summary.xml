@@ -355,7 +355,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
-        android:id="@+id/recbtn4"
+        android:id="@+id/recbtn"
         android:layout_width="95dp"
         android:layout_height="85dp"
         android:background="@drawable/title_bgcol"
@@ -369,7 +369,7 @@
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/summary_bt4"
+        android:id="@+id/summary_bt"
         android:layout_width="95dp"
         android:layout_height="85dp"
         android:background="@drawable/title_bgcol"
@@ -382,7 +382,7 @@
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <ImageButton
-        android:id="@+id/exit_bt4"
+        android:id="@+id/exit_bt"
         android:layout_width="95dp"
         android:layout_height="85dp"
         android:background="@drawable/title_bgcol"

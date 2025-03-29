@@ -23,9 +23,8 @@ class LeaveMonitor : AppCompatActivity() {
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
     private lateinit var binding : ActivityLeaveMonitorBinding
-    private var applicationNum : Int = 0
-    private var applicationNumNext : Int = 0
     private lateinit var userId : String
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,26 +32,30 @@ class LeaveMonitor : AppCompatActivity() {
         setContentView(binding.root)
         val username = findViewById<TextView>(R.id.username)
         stats = findViewById(R.id.stats)
+
         //Extras
         val user = intent.getStringExtra("username")
         userId = intent.getStringExtra("id").toString()
         username.text = user
-        checkIfPending()
         // Firebase FireStore Implementation
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase.getReference("Leave Applicants")
 
-        // SharedPref
-        val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        applicationNum = sharedPref.getInt("leaveNum", 0)
-        if (applicationNum == applicationNumNext){
-            applicationNumNext = applicationNum + 1
-            editor.apply {
-                putInt("leaveNum", applicationNumNext).apply()
+        val ref = db.collection("Leave Applicants").document(userId).collection("Leave Application")
+        ref.get().addOnSuccessListener { querySnapshot ->
+            val documentCount = querySnapshot.size()
+            Toast.makeText(this, "Number of documents: $documentCount", Toast.LENGTH_SHORT).show()
+            val refer = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave ${documentCount - 1}")
+            refer.get().addOnSuccessListener {
+                if (it.exists()) {
+                    val status = it.getString("applicationStatus").toString()
+                    stats.text = status
+                }
+                else {
+                    stats.text = "No Leave Application"
+                }
             }
         }
-
 
         binding.exitBtn.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -68,7 +71,7 @@ class LeaveMonitor : AppCompatActivity() {
             builder.create().show()
         }
         binding.recbtn.setOnClickListener {
-            if (stats.text == "No Leave Application" || stats.text == "null") {
+            if (stats.text == "No Leave Application" || stats.text == "null" || stats.text == "Approved") {
                 val intent = Intent(this, LeaveApplicationActivity::class.java)
                 val dateToday = Calendar.getInstance().time
                 val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
@@ -113,20 +116,5 @@ class LeaveMonitor : AppCompatActivity() {
             }
         builder.create().show()
     }
-    @SuppressLint("SetTextI18n")
-    private fun checkIfPending(){
-        val ref = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $applicationNum")
-        ref.get().addOnSuccessListener {
-            if (it.exists()) {
-                val status = it.getString("applicationStatus").toString()
-                stats.text = status
-            }
-            else {
-                Toast.makeText(this, "No Leave Application", Toast.LENGTH_LONG).show()
-                stats.text = "No Leave Application"
-            }
-        }
 
-
-    }
 }

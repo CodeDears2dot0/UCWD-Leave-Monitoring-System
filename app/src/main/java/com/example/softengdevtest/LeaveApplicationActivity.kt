@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
@@ -30,6 +31,9 @@ class LeaveApplicationActivity : AppCompatActivity() {
    private lateinit var applicantName : TextView
    private lateinit var typeLeave : Spinner
    private lateinit var qualityLeave : Spinner
+   private lateinit var exitBtn : ImageButton
+   private lateinit var summaryBtn : ImageButton
+   private lateinit var recordBtn : ImageButton
    private lateinit var dateLeave : TextView
    private lateinit var numLeave : EditText
    private lateinit var dateOfLeave : TextView
@@ -42,31 +46,29 @@ class LeaveApplicationActivity : AppCompatActivity() {
    private var dateWhenToLeave : String = "00/00/0000"
    private var typePos : Int = 0
    private var qualityPos : Int = 0
+   private var reason : String = "None"
+   private var days : String = "1"
    private var applicationNum : Int = 0
    private var applicationNumNext : Int = 0
    @SuppressLint("MissingInflatedId", "SetTextI18n")
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
       setContentView(R.layout.activity_leave_application01)
-      //Extras
 
+      //Extras
       name = intent.getStringExtra("username").toString()
       userId = intent.getStringExtra("id").toString()
-      dateWhenToLeave = intent?.getStringExtra("dateWhenLeave").toString()
-      typePos = intent?.getIntExtra("typeOfLeave", 0).toString().toInt()
-      qualityPos = intent?.getIntExtra("quality", 0).toString().toInt()
-
+      dateWhenToLeave = intent.getStringExtra("dateWhenLeave").toString()
+      typePos = intent.getIntExtra("typeOfLeave", 0).toString().toInt()
+      qualityPos = intent.getIntExtra("quality", 0).toString().toInt()
+      reason = intent.getStringExtra("reason").toString()
+      days = intent.getStringExtra("days").toString()
 
       //Shared Preferences
       val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
       val editor = sharedPref.edit()
-      applicationNum = sharedPref.getInt("leaveNum", 0)
-      if (applicationNum == applicationNumNext){
-         applicationNumNext = applicationNum + 1
-         editor.apply {
-            putInt("leaveNum", applicationNumNext).apply()
-         }
-      }
+      applicationNum = sharedPref.getInt("leaving", 0)
+      applicationNumNext = applicationNum
 
       val dateToday = intent?.getStringExtra("dateToday")
       typeLeave = findViewById(R.id.spinner)
@@ -88,6 +90,9 @@ class LeaveApplicationActivity : AppCompatActivity() {
          adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
          qualityLeave.adapter = adapter
       }
+      exitBtn = findViewById(R.id.exit_bt)
+      summaryBtn = findViewById(R.id.summary_bt)
+      recordBtn = findViewById(R.id.recbtn)
       qualityLeave.setSelection(qualityPos)
       fragCon = findViewById<FragmentContainerView>(R.id.fragmentContainer)
       applicantName = findViewById(R.id.employeeName)
@@ -98,12 +103,22 @@ class LeaveApplicationActivity : AppCompatActivity() {
       reasonOfLeave = findViewById(R.id.reason)
       cardView = findViewById(R.id.cardView2)
       save = findViewById(R.id.savebtn)
-      dateOfLeave.text = dateWhenToLeave
       applicantName.text = name
       save.visibility = View.VISIBLE
       cardView.visibility = View.VISIBLE
       fragCon.visibility = View.INVISIBLE
       dbRef = FirebaseDatabase.getInstance().getReference("Leave Applicants")
+
+      // Setting Text
+      if (days.toString() != "null"){
+         dateOfLeave.text = dateWhenToLeave
+         numLeave.setText(days)
+         reasonOfLeave.setText(reason)
+      }else {
+         dateOfLeave.hint = "Select Date"
+         numLeave.hint = "1"
+         reasonOfLeave.hint ="Reason"
+      }
 
       dateOfLeave.setOnClickListener {
          save.visibility = View.INVISIBLE
@@ -115,6 +130,9 @@ class LeaveApplicationActivity : AppCompatActivity() {
             putString("dateToday", dateToday)
             putInt("typeOfLeave", typeLeave.selectedItemPosition)
             putInt("quality", qualityLeave.selectedItemPosition)
+            putString("reason", reasonOfLeave.text.toString())
+            putString("days", numLeave.text.toString())
+
          }
          val pos = qualityLeave.selectedItemPosition
          Toast.makeText(this, "Position $pos", Toast.LENGTH_LONG).show()
@@ -127,10 +145,41 @@ class LeaveApplicationActivity : AppCompatActivity() {
             .setMessage("Are you sure you want to submit this leave application?")
             .setPositiveButton("Yes") {_, _ ->
                saveApplicationLeave()
+               applicationNumNext = applicationNum + 1
+               editor.apply {
+                  putInt("leaving", applicationNumNext).apply()
+               }
             }
             .setNegativeButton("No") {dialog, _ ->
                dialog.dismiss()
             }.show()
+      }
+      exitBtn.setOnClickListener {
+         val builder = AlertDialog.Builder(this)
+            .setTitle("Log out")
+            .setMessage("Are you sure you want to Log out?")
+            .setPositiveButton("Yes") {_, _->
+               startActivity(Intent(this, LoginActivity::class.java))
+               finish()
+            }
+            .setNegativeButton("No") {dialog, _->
+               dialog.dismiss()
+            }
+         builder.create().show()
+      }
+      recordBtn.setOnClickListener {
+         val intent = Intent(this, LeaveMonitor::class.java)
+         intent.putExtra("username", name.toString())
+         intent.putExtra("id", userId)
+         startActivity(intent)
+         finish()
+      }
+      summaryBtn.setOnClickListener {
+         val intent = Intent(this, Summary::class.java)
+         intent.putExtra("username", name.toString())
+         intent.putExtra("id", userId)
+         startActivity(intent)
+         finish()
       }
    }
 

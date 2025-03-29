@@ -225,7 +225,6 @@
                 android:layout_columnWeight="1"
                 android:layout_column="1"
                 android:layout_rowWeight="1"
-                android:text="Pending"
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 tools:ignore="HardcodedText" />
