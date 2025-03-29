@@ -23,11 +23,12 @@ class Summary : AppCompatActivity() {
     private lateinit var appLeaves : TextView
     private var userId : String = "Something"
     private var documentCount : Int = 0
+    private var username : String = "Something"
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_summary)
-        val username = intent.getStringExtra("username")
+        username = intent.getStringExtra("username").toString()
         userId = intent.getStringExtra("id").toString()
         val userName = findViewById<TextView>(R.id.username)
         userName.text = username.toString()
@@ -135,5 +136,14 @@ class Summary : AppCompatActivity() {
                 callback(num)
             }
         }
+    }
+    @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+        val intent = Intent(this, LeaveMonitor::class.java)
+        intent.putExtra("username", username)
+        intent.putExtra("id", userId)
+        startActivity(intent)
+        finish()
     }
 }

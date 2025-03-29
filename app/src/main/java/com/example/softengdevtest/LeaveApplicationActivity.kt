@@ -208,4 +208,13 @@ class LeaveApplicationActivity : AppCompatActivity() {
       fragmentManager = supportFragmentManager
       fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit()
    }
+   @Deprecated("This method has been deprecated in favor of using the\n      {@link OnBackPressedDispatcher} via {@link #getOnBackPressedDispatcher()}.\n      The OnBackPressedDispatcher controls how back button events are dispatched\n      to one or more {@link OnBackPressedCallback} objects.")
+   @SuppressLint("MissingSuperCall")
+   override fun onBackPressed() {
+      val intent = Intent(this, LeaveMonitor::class.java)
+      intent.putExtra("username", name)
+      intent.putExtra("id", userId)
+      startActivity(intent)
+      finish()
+   }
 }
