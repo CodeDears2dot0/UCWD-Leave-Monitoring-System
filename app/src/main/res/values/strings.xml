@@ -31,9 +31,20 @@
     <string name="ditLeave">Date of Leave:</string>
     <string-array name="leaves">
         <item>Sick Leave</item>
-        <item>Paternity Leave</item>
-        <item>Public holidays</item>
+        <item>Vacation Leave</item>
+        <item>Birthday Leave</item>
+        <item>Bereavement Leave</item>
+        <item>Service Incentive Leave</item>
         <item>Maternity Leave</item>
+        <item>Paternity Leave</item>
+        <item>Solo Parent Leave</item>
+        <item>Special Leave for Women</item>
+        <item>official Business Leave</item>
+    </string-array>
+    <string-array name="quality">
+        <item>First Half</item>
+        <item>Second Half</item>
+        <item>Whole Day</item>
     </string-array>
     <string name="save">Save</string>
     <string name="one">1</string>
@@ -49,4 +60,119 @@
     <string name="pass">Password</string>
     <string name="rePass">Retype Password</string>
     <string name="create">Create Account</string>
+    <string name="quan">Quantity:</string>
+    <string name="res">Reason:</string>
+    <string name="whyLeave">Reason to leave work</string>
+    <string name="ucwd">UCWD Leave Monitoring System\n</string>
+    <string name="terms">Terms and Conditions</string>
+    <string name="termsCon">
+
+
+        \nLast Updated: March 26, 2025
+
+        \nWelcome to the UCWD Leave Monitoring System. By using this System, you agree to comply with the following Terms and Conditions.
+
+        \n
+        \n1. Purpose \n\n
+
+        The UCWD Leave Monitoring System is designed to:
+
+        Track employee leaves, including sick leave, special leave, and other types.
+
+        Enable employees to apply for leave.
+
+        Provide UCWD administrators with tools to approve or decline leave requests.
+
+        \n
+        \n2. Users of the System\n
+
+
+        \nThere are two types of users:
+
+        \n
+        \nUCWD Administrators – Have access to manage employee leave requests and records.
+
+        \n
+        \nEmployees – Can view their leave Summary and submit leave applications.
+
+        \n
+        \nEach user type will have a distinct interface tailored to their role.
+
+        \n
+        \n3. User Responsibilities
+
+        \n
+        \nAdministrators must ensure the accuracy of leave records and handle employee requests properly.
+
+        \n
+        \nEmployees must provide truthful leave applications and comply with UCWD policies.
+
+        \n
+        \nUsers must maintain the confidentiality of their login credentials and system data.
+
+        \n
+        \n4. Data Collection and Privacy
+
+        \n
+        \nThe system will store employee leave data, which will be provided and managed by UCWD administrators.
+
+        \n
+        \nThe development team is only responsible for creating the system and does not collect or store data.
+
+        \n
+        \nUCWD is responsible for ensuring compliance with Philippine data privacy laws.
+
+        \n
+        \n5. Restrictions
+
+        \n
+        \nThe following activities are strictly prohibited:
+
+        \n
+        \nUnauthorized access to the system or another user’s account.
+
+        \n
+        \nTampering with or falsifying leave records.
+
+        \n
+        \nAny attempt to compromise the security or integrity of the system.
+
+        \n
+        \nViolations may result in disciplinary action and possible legal consequences.
+
+        \n
+        \n6. Liability
+
+
+        \n
+        \nOur development team is responsible for ensuring that the system functions correctly.
+
+        \n
+        \nHowever, UCWD is responsible for how the system is used and how data is managed.
+
+        \n
+        \nDevelopers are not liable for any incorrect leave records due to human error or misuse of the system.
+
+        \n
+        \n7. Modifications to Terms
+
+        \n
+        \nThese Terms and Conditions may be updated as needed.
+
+        \n
+        \nUsers will be notified of changes via email or other means determined by UCWD.
+
+        \n
+        \n8. Governing Law
+
+        \n
+        \nThis agreement is governed by the laws of the Philippines, including labor regulations and data privacy laws.
+
+        \n
+        \nBy using the UCWD Leave Monitoring System, you acknowledge and agree to these Terms and Conditions.
+
+        \n
+        \nFor any inquiries, please contact (codedearstwozero@gmail.com).</string>
+
+    <string name="sum">Summary\n</string>
 </resources>

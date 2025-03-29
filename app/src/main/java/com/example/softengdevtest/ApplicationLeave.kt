@@ -7,5 +7,7 @@ data class ApplicationLeave(
     var applicationLeaveType: String,
     val applicationLeaveDays: String,
     val applicationLeaveDate: String,
+    val applicationQuality: String,
+    val applicationReason: String,
     val applicationStatus: String = "Pending"
-    )
+)
