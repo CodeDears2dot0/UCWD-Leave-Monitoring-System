@@ -24,14 +24,14 @@ class Summary : AppCompatActivity() {
     private var userId : String = "Something"
     private var documentCount : Int = 0
     private var username : String = "Something"
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_summary)
         username = intent.getStringExtra("username").toString()
         userId = intent.getStringExtra("id").toString()
         val userName = findViewById<TextView>(R.id.username)
-        userName.text = username.toString()
+        userName.text = username
 
         // Initialized TextViews
         reqLeaves = findViewById(R.id.reqLeaves)
@@ -73,14 +73,14 @@ class Summary : AppCompatActivity() {
             builder.create().show()
         }
         recordBtn.setOnClickListener {
-            val ref = db.collection("Leave Applicants").document(userId).collection("Leave Application")
-            ref.get().addOnSuccessListener {querySnapshot ->
+            val reference = db.collection("Leave Applicants").document(userId).collection("Leave Application")
+            reference.get().addOnSuccessListener {querySnapshot ->
                 val documentCount = querySnapshot.size()
-                val ref = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave ${documentCount - 1}")
-                ref.get().addOnSuccessListener {
+                val refer = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave ${documentCount - 1}")
+                refer.get().addOnSuccessListener {
                     if (it.getString("applicationStatus") == "Approved"){
                         val intent = Intent(this, LeaveApplicationActivity::class.java)
-                        intent.putExtra("username", username.toString())
+                        intent.putExtra("username", username)
                         intent.putExtra("id", userId)
                         startActivity(intent)
                         finish()
@@ -98,7 +98,7 @@ class Summary : AppCompatActivity() {
         }
         summaryBtn.setOnClickListener {
             val intent = Intent(this, LeaveMonitor::class.java)
-            intent.putExtra("username", username.toString())
+            intent.putExtra("username", username)
             intent.putExtra("id", userId)
             startActivity(intent)
             finish()
@@ -125,7 +125,7 @@ class Summary : AppCompatActivity() {
     private fun returnApprovedLeaves(callback: (Int?) -> Unit){
         var num = 0
         for (number in  documentCount downTo 0) {
-            var ref = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave ${number - 1}")
+            val ref = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave ${number - 1}")
             ref.get().addOnSuccessListener {
                 val status = it.getString("applicationStatus")
                 if (status == "Approved") {

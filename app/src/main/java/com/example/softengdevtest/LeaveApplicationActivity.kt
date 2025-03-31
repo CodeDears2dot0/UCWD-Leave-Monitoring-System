@@ -48,7 +48,6 @@ class LeaveApplicationActivity : AppCompatActivity() {
    private var qualityPos : Int = 0
    private var reason : String = "None"
    private var days : String = "1"
-   private var applicationNum : Int = 0
    private var applicationNumNext : Int = 0
    @SuppressLint("MissingInflatedId", "SetTextI18n")
    override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,12 +62,6 @@ class LeaveApplicationActivity : AppCompatActivity() {
       qualityPos = intent.getIntExtra("quality", 0).toString().toInt()
       reason = intent.getStringExtra("reason").toString()
       days = intent.getStringExtra("days").toString()
-
-      //Shared Preferences
-      val sharedPref = getSharedPreferences("myPref", MODE_PRIVATE)
-      val editor = sharedPref.edit()
-      applicationNum = sharedPref.getInt("leaving", 0)
-      applicationNumNext = applicationNum
 
       val dateToday = intent?.getStringExtra("dateToday")
       typeLeave = findViewById(R.id.spinner)
@@ -94,7 +87,7 @@ class LeaveApplicationActivity : AppCompatActivity() {
       summaryBtn = findViewById(R.id.summary_bt)
       recordBtn = findViewById(R.id.recbtn)
       qualityLeave.setSelection(qualityPos)
-      fragCon = findViewById<FragmentContainerView>(R.id.fragmentContainer)
+      fragCon = findViewById (R.id.fragmentContainer)
       applicantName = findViewById(R.id.employeeName)
       dateLeave = findViewById(R.id.dateToday)
       dateLeave.text = dateToday
@@ -110,7 +103,7 @@ class LeaveApplicationActivity : AppCompatActivity() {
       dbRef = FirebaseDatabase.getInstance().getReference("Leave Applicants")
 
       // Setting Text
-      if (days.toString() != "null"){
+      if (days != "null"){
          dateOfLeave.text = dateWhenToLeave
          numLeave.setText(days)
          reasonOfLeave.setText(reason)
@@ -138,6 +131,12 @@ class LeaveApplicationActivity : AppCompatActivity() {
          Toast.makeText(this, "Position $pos", Toast.LENGTH_LONG).show()
          goToFragment(DateFragment(), bundle)
       }
+      countDocumentSize { result ->
+         if (result != null) {
+            applicationNumNext = result
+            Toast.makeText(this, "$applicationNumNext", Toast.LENGTH_LONG).show()
+         }
+      }
 
       save.setOnClickListener {
          val builder = AlertDialog.Builder(this)
@@ -145,10 +144,6 @@ class LeaveApplicationActivity : AppCompatActivity() {
             .setMessage("Are you sure you want to submit this leave application?")
             .setPositiveButton("Yes") {_, _ ->
                saveApplicationLeave()
-               applicationNumNext = applicationNum + 1
-               editor.apply {
-                  putInt("leaving", applicationNumNext).apply()
-               }
             }
             .setNegativeButton("No") {dialog, _ ->
                dialog.dismiss()
@@ -169,14 +164,14 @@ class LeaveApplicationActivity : AppCompatActivity() {
       }
       recordBtn.setOnClickListener {
          val intent = Intent(this, LeaveMonitor::class.java)
-         intent.putExtra("username", name.toString())
+         intent.putExtra("username", name)
          intent.putExtra("id", userId)
          startActivity(intent)
          finish()
       }
       summaryBtn.setOnClickListener {
          val intent = Intent(this, Summary::class.java)
-         intent.putExtra("username", name.toString())
+         intent.putExtra("username", name)
          intent.putExtra("id", userId)
          startActivity(intent)
          finish()
@@ -216,5 +211,16 @@ class LeaveApplicationActivity : AppCompatActivity() {
       intent.putExtra("id", userId)
       startActivity(intent)
       finish()
+   }
+
+   private fun countDocumentSize(callback: (Int?) -> Unit) {
+      var sizeOfNum: Int
+      val ref = db.collection("Leave Applicants").document(userId).collection("Leave Application")
+      ref.get().addOnSuccessListener { querySnapshot ->
+         val documentSize = querySnapshot.size()
+         sizeOfNum = documentSize
+         Toast.makeText(this, "$sizeOfNum", Toast.LENGTH_LONG).show()
+         callback(sizeOfNum)
+      }
    }
 }

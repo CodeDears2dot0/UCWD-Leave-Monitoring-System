@@ -72,20 +72,21 @@
                 app:layout_constraintVertical_bias="0.575"
                 tools:ignore="ContentDescription" />
 
-            <TextView
+                <TextView
                 android:id="@+id/employeeName"
                 android:layout_width="265dp"
                 android:layout_height="61dp"
                 android:gravity="center"
-                android:textSize="20sp"
                 android:text="@string/empName"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.259"
                 app:layout_constraintStart_toEndOf="@+id/image"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.589" />
+                app:layout_constraintVertical_bias="0.589"
+                tools:ignore="TextSizeCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -153,16 +154,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.36">
+
                         <TextView
                             android:id="@+id/TVemployeename"
                             android:layout_width="170dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/verdana"
                             android:padding="20dp"
                             android:text="@string/type"
                             android:textSize="15sp"
                             android:textStyle="bold"
-                            android:fontFamily="@font/verdana"
-                            android:layout_gravity="center_vertical"/>
+                            tools:ignore="TextSizeCheck" />
 
                         <Spinner
                             android:textAlignment="center"
@@ -185,18 +188,19 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.55">
+
                         <TextView
                             android:layout_width="170dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/verdana"
+                            android:paddingStart="20dp"
                             android:paddingTop="20dp"
                             android:paddingBottom="20dp"
-                            android:paddingStart="20dp"
                             android:text="@string/dateApp"
                             android:textSize="15sp"
                             android:textStyle="bold"
-                            android:fontFamily="@font/verdana"
-                            android:layout_gravity="center_vertical"
-                            tools:ignore="RtlSymmetry" />
+                            tools:ignore="RtlSymmetry,TextSizeCheck" />
 
                         <TextView
                             android:id="@+id/dateToday"
@@ -220,19 +224,20 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.74">
+
                         <TextView
                             android:layout_width="170dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
                             android:autofillHints=""
+                            android:fontFamily="@font/verdana"
+                            android:paddingStart="20dp"
                             android:paddingTop="20dp"
                             android:paddingBottom="20dp"
-                            android:paddingStart="20dp"
                             android:text="@string/numDays"
                             android:textSize="15sp"
                             android:textStyle="bold"
-                            android:fontFamily="@font/verdana"
-                            android:layout_gravity="center_vertical"
-                            tools:ignore="RtlSymmetry" />
+                            tools:ignore="RtlSymmetry,TextSizeCheck" />
 
                         <EditText
                             android:id="@+id/numLeave"
