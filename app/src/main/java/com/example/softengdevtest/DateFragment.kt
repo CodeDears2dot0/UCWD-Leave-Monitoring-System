@@ -47,18 +47,6 @@ class DateFragment : Fragment() {
         calendarView = view.findViewById(R.id.calendarView2)
         cancel = view.findViewById(R.id.cancel)
         save = view.findViewById(R.id.save)
-        cancel.setOnClickListener {
-            val intent = Intent(requireContext(), LeaveApplicationActivity::class.java)
-            intent.putExtra("id", receivedId)
-            intent.putExtra("dateToday", receivedDate)
-            intent.putExtra("username", receivedName)
-            intent.putExtra("dateWhenLeave", dateString)
-            intent.putExtra("typeOfLeave", receivedTypePos)
-            intent.putExtra("quality", receivedQualityPos)
-            intent.putExtra("reason", receivedReason)
-            intent.putExtra("days", receivedDays)
-            startActivity(intent)
-        }
 
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             // Create a Date object from the selected year, month, and day
@@ -73,6 +61,18 @@ class DateFragment : Fragment() {
 
             // Display the formatted date in the TextView
              dateString = formattedDate
+        }
+        cancel.setOnClickListener {
+            val intent = Intent(requireContext(), LeaveApplicationActivity::class.java)
+            intent.putExtra("id", receivedId)
+            intent.putExtra("dateToday", receivedDate)
+            intent.putExtra("username", receivedName)
+            intent.putExtra("dateWhenLeave", dateString)
+            intent.putExtra("typeOfLeave", receivedTypePos)
+            intent.putExtra("quality", receivedQualityPos)
+            intent.putExtra("reason", receivedReason)
+            intent.putExtra("days", receivedDays)
+            startActivity(intent)
         }
         save.setOnClickListener {
             val intent = Intent(requireContext(), LeaveApplicationActivity::class.java)
