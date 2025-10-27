@@ -19,9 +19,8 @@ import androidx.fragment.app.FragmentContainerView
 import androidx.fragment.app.FragmentManager
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-
+import com.google.firebase.firestore.firestore
+import com.google.firebase.Firebase
 
 
 class LeaveApplicationActivity : AppCompatActivity() {
@@ -133,7 +132,7 @@ class LeaveApplicationActivity : AppCompatActivity() {
       }
       countDocumentSize { result ->
          if (result != null) {
-            applicationNumNext = result
+            applicationNumNext = result + 1
             Toast.makeText(this, "$applicationNumNext", Toast.LENGTH_LONG).show()
          }
       }
@@ -186,7 +185,7 @@ class LeaveApplicationActivity : AppCompatActivity() {
       val leaveDate = dateOfLeave.text.toString()
       val qualityOfLeave = qualityLeave.selectedItem.toString()
       val reason = reasonOfLeave.text.toString()
-      db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $applicationNumNext").set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate, qualityOfLeave, reason))
+      db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $applicationNumNext").set(ApplicationLeave(userId, employeeName, dateLeave, typeOfLeave, numOfLeave, leaveDate, qualityOfLeave, reason, "Pending"))
          .addOnSuccessListener {
             Toast.makeText(this, "Leave Application Successfully", Toast.LENGTH_LONG).show()
             val intent = Intent(this, LeaveMonitor::class.java)

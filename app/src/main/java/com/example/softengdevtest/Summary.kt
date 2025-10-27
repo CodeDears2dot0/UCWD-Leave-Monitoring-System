@@ -76,7 +76,7 @@ class Summary : AppCompatActivity() {
             val reference = db.collection("Leave Applicants").document(userId).collection("Leave Application")
             reference.get().addOnSuccessListener {querySnapshot ->
                 val documentCount = querySnapshot.size()
-                val refer = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave ${documentCount - 1}")
+                val refer = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $documentCount")
                 refer.get().addOnSuccessListener {
                     if (it.getString("applicationStatus") == "Approved"){
                         val intent = Intent(this, LeaveApplicationActivity::class.java)

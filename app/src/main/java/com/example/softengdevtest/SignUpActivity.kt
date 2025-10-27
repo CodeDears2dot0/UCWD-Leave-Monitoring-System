@@ -18,8 +18,8 @@ import com.example.softengdevtest.databinding.ActivitySignUpBinding
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.firestore
+import com.google.firebase.Firebase
 
 class SignUpActivity : AppCompatActivity() {
    private lateinit var fragmentManager: FragmentManager
@@ -154,7 +154,7 @@ class SignUpActivity : AppCompatActivity() {
       }else {
          checking { result ->
             if (result != null) {
-               Toast.makeText(this, "Employee ID already exists", Toast.LENGTH_LONG).show()
+               Toast.makeText(this, "Loading", Toast.LENGTH_LONG).show()
             } else {
                saveEmployeeData()
             }

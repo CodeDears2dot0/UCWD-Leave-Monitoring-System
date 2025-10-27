@@ -317,7 +317,7 @@
 
                 <TextView
                     android:id="@+id/leaveNum"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/verdana"
@@ -328,10 +328,10 @@
 
                 <TextView
                     android:id="@+id/leaveType"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="20dp"
                     android:fontFamily="@font/verdana"
                     android:paddingVertical="10dp"
                     android:textSize="11sp"
@@ -340,10 +340,10 @@
 
                 <TextView
                     android:id="@+id/dateOfLeave"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="20dp"
                     android:fontFamily="@font/verdana"
                     android:paddingVertical="10dp"
                     android:textSize="11sp"

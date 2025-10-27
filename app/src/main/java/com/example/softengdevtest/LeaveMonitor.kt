@@ -1,6 +1,7 @@
 package com.example.softengdevtest
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -12,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.softengdevtest.databinding.ActivityLeaveMonitorBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.firestore
+import com.google.firebase.Firebase
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -44,11 +45,11 @@ class LeaveMonitor : AppCompatActivity() {
         val ref = db.collection("Leave Applicants").document(userId).collection("Leave Application")
         ref.get().addOnSuccessListener { querySnapshot ->
             val documentCount = querySnapshot.size()
-            Toast.makeText(this, "Number of documents: $documentCount", Toast.LENGTH_SHORT).show()
-            val refer = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave ${documentCount - 1}")
+            val refer = db.collection("Leave Applicants").document(userId).collection("Leave Application").document("Leave $documentCount")
             refer.get().addOnSuccessListener {
                 if (it.exists()) {
-                    val status = it.getString("applicationStatus").toString()
+                    Toast.makeText(this, "Leave Application Exists", Toast.LENGTH_SHORT).show()
+                    val status = it.getString("applicationStatus")
                     stats.text = status
                 }
                 else {
