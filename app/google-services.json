@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "403034204131",
+    "project_id": "ucwd-test",
+    "storage_bucket": "ucwd-test.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403034204131:android:80955c3f5360bd082be2d6",
+        "android_client_info": {
+          "package_name": "com.example.softengdevtest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhhijf_k6tr-H68D13VONXAPncz1f_Cgs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
